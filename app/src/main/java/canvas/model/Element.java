@@ -27,4 +27,14 @@ public class Element implements Component {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    @Override
+    public boolean isOverlapping(Point p1, Point p2) {
+        Point plt = Point.topLeft(p1, p2);
+        Point prb = Point.bottomRight(p1, p2);
+
+        boolean notOverlappingX = position.getX() > prb.getX() || position.getX() + width < plt.getX();
+        boolean notOverlappingY = position.getY() > prb.getY() || position.getY() + height < plt.getY();
+        return !(notOverlappingX || notOverlappingY);
+    }
 }
