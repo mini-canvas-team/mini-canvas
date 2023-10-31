@@ -1,5 +1,7 @@
 package canvas.model;
 
+import canvas.controller.DrawAdapter;
+
 public class Element implements Component {
     private Point position;
     private int width;
@@ -36,5 +38,10 @@ public class Element implements Component {
         boolean notOverlappingX = position.getX() > prb.getX() || position.getX() + width < plt.getX();
         boolean notOverlappingY = position.getY() > prb.getY() || position.getY() + height < plt.getY();
         return !(notOverlappingX || notOverlappingY);
+    }
+
+    @Override
+    public void draw(DrawAdapter adapter) {
+        adapter.draw(this);
     }
 }

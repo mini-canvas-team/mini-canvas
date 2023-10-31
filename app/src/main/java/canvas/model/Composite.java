@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import canvas.controller.DrawAdapter;
+
 public class Composite implements Component {
     private List<Component> components = new ArrayList<>();
 
@@ -54,5 +56,10 @@ public class Composite implements Component {
     @Override
     public boolean isOverlapping(Point p1, Point p2) {
         return components.stream().anyMatch(component -> component.isOverlapping(p1, p2));
+    }
+
+    @Override
+    public void draw(DrawAdapter adapter) {
+        components.forEach(component -> component.draw(adapter));
     }
 }

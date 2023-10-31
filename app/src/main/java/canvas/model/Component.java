@@ -1,5 +1,7 @@
 package canvas.model;
 
+import canvas.controller.DrawAdapter;
+
 public interface Component {
     void setWidth(int width);
 
@@ -8,4 +10,6 @@ public interface Component {
     void setColor(Color color);
 
     boolean isOverlapping(Point p1, Point p2);
+
+    void draw(DrawAdapter factory);
 }
