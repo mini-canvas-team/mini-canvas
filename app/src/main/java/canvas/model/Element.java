@@ -2,7 +2,7 @@ package canvas.model;
 
 import canvas.controller.DrawAdapter;
 
-public class Element implements Component {
+public abstract class Element implements Component {
     private Point position;
     private int width;
     private int height;
@@ -31,13 +31,33 @@ public class Element implements Component {
     }
 
     @Override
-    public boolean isOverlapping(Point p1, Point p2) {
+    public abstract void setText(String text);
+
+    @Override
+    public abstract void setPath(String path);
+
+    @Override
+    public Integer getWidth() {
+        return width;
+    }
+
+    @Override
+    public Integer getHeight() {
+        return height;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public boolean contains(Point p1, Point p2) {
         Point plt = Point.topLeft(p1, p2);
         Point prb = Point.bottomRight(p1, p2);
 
-        boolean notOverlappingX = position.getX() > prb.getX() || position.getX() + width < plt.getX();
-        boolean notOverlappingY = position.getY() > prb.getY() || position.getY() + height < plt.getY();
-        return !(notOverlappingX || notOverlappingY);
+        boolean overlappingX = position.getX() <= prb.getX() && position.getX() + width >= plt.getX();
+        boolean overlappingY = position.getY() <= prb.getY() && position.getY() + height >= plt.getY();
+        return overlappingX && overlappingY;
     }
 
     @Override
