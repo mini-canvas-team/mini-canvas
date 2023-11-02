@@ -9,6 +9,10 @@ public interface Component {
 
     void setColor(Color color);
 
+    void setText(String text);
+
+    void setPath(String path);
+
     boolean contains(Point p1, Point p2);
 
     void draw(DrawAdapter adapter);

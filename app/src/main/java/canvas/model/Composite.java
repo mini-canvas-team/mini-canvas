@@ -50,6 +50,16 @@ public class Composite implements Component {
     }
 
     @Override
+    public void setText(String text) {
+        components.forEach(component -> component.setText(text));
+    }
+
+    @Override
+    public void setPath(String path) {
+        components.forEach(component -> component.setPath(path));
+    }
+
+    @Override
     public boolean contains(Point p1, Point p2) {
         return components.stream().anyMatch(component -> component.contains(p1, p2));
     }

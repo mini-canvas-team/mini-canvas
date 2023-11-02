@@ -2,7 +2,7 @@ package canvas.model;
 
 import canvas.controller.DrawAdapter;
 
-public class Element implements Component {
+public abstract class Element implements Component {
     private Point position;
     private int width;
     private int height;
@@ -29,6 +29,12 @@ public class Element implements Component {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    @Override
+    public abstract void setText(String text);
+
+    @Override
+    public abstract void setPath(String path);
 
     @Override
     public boolean contains(Point p1, Point p2) {
