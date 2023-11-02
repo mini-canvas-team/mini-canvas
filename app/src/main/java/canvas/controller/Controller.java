@@ -17,6 +17,11 @@ public class Controller {
         return instance;
     };
 
+    // left panel event
+    public void setSelectedObject(int type) {
+        selectedObject = type;
+    };
+
     // down panel event
     public void setSelectedColor(Color color) {
         selectedColor = color;
@@ -85,5 +90,4 @@ public class Controller {
     private void showObjectColor() {
 
     };
-
 }
