@@ -2,23 +2,12 @@ package canvas.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import canvas.controller.DrawAdapter;
 
 public class Composite implements Component {
     private List<Component> components = new ArrayList<>();
-
-    private Composite(List<Component> components) {
-        this.components = components;
-    }
-
-    private Stream<Component> getOverlappingStream(Point p1, Point p2) {
-        return components.stream().filter(components -> components.isOverlapping(p1, p2));
-    }
 
     public void add(Component component) {
         components.add(component);
@@ -28,14 +17,16 @@ public class Composite implements Component {
         components.remove(component);
     }
 
-    public Composite select(Point p1, Point p2) {
-        List<Component> selected = getOverlappingStream(p1, p2).toList();
-        return new Composite(selected);
+    public void ofList(List<Component> components) {
+        this.components = components;
     }
 
-    public Composite selectOne(Point p1) {
-        Optional<Component> selected = getOverlappingStream(p1, p1).findFirst();
-        return new Composite(selected.stream().toList());
+    public List<Component> get() {
+        return components;
+    }
+
+    public List<Component> filter(Predicate<Component> predicate) {
+        return components.stream().filter(predicate).toList();
     }
 
     @Override
@@ -54,8 +45,8 @@ public class Composite implements Component {
     }
 
     @Override
-    public boolean isOverlapping(Point p1, Point p2) {
-        return components.stream().anyMatch(component -> component.isOverlapping(p1, p2));
+    public boolean contains(Point p1, Point p2) {
+        return components.stream().anyMatch(component -> component.contains(p1, p2));
     }
 
     @Override
