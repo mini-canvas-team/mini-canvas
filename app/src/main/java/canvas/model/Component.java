@@ -13,6 +13,12 @@ public interface Component {
 
     void setPath(String path);
 
+    Integer getWidth();
+
+    Integer getHeight();
+
+    Color getColor();
+
     boolean contains(Point p1, Point p2);
 
     void draw(DrawAdapter adapter);

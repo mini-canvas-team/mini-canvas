@@ -37,6 +37,20 @@ public abstract class Element implements Component {
     public abstract void setPath(String path);
 
     @Override
+    public Integer getWidth() {
+        return width;
+    }
+
+    @Override
+    public Integer getHeight() {
+        return height;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
     public boolean contains(Point p1, Point p2) {
         Point plt = Point.topLeft(p1, p2);
         Point prb = Point.bottomRight(p1, p2);
