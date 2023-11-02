@@ -3,6 +3,7 @@ package canvas.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import canvas.controller.DrawAdapter;
 
@@ -11,6 +12,10 @@ public class Composite implements Component {
 
     public void add(Component component) {
         components.add(component);
+    }
+
+    public void addFront(Component component) {
+        components.add(0, component);
     }
 
     public void remove(Component component) {
@@ -26,7 +31,7 @@ public class Composite implements Component {
     }
 
     public List<Component> filter(Predicate<Component> predicate) {
-        return components.stream().filter(predicate).toList();
+        return components.stream().filter(predicate).collect(Collectors.toList());
     }
 
     @Override

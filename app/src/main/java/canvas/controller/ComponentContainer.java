@@ -1,5 +1,9 @@
 package canvas.controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import canvas.model.Component;
 import canvas.model.Composite;
 import canvas.model.Point;
 
@@ -20,4 +24,16 @@ public class ComponentContainer {
         selections.ofList(resources.filter(component -> component.contains(p1, p1)).stream().limit(1).toList());
     }
 
+    public void setFront() {
+        selections.get().forEach(component -> resources.remove(component));
+
+        List<Component> l = selections.get();
+        Collections.reverse(l);
+        l.forEach(component -> resources.addFront(component));
+    }
+
+    public void setBack() {
+        selections.get().forEach(component -> resources.remove(component));
+        selections.get().forEach(component -> resources.add(component));
+    }
 }
