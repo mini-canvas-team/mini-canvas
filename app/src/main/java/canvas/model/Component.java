@@ -9,7 +9,17 @@ public interface Component {
 
     void setColor(Color color);
 
-    boolean isOverlapping(Point p1, Point p2);
+    void setText(String text);
 
-    void draw(DrawAdapter factory);
+    void setPath(String path);
+
+    Integer getWidth();
+
+    Integer getHeight();
+
+    Color getColor();
+
+    boolean contains(Point p1, Point p2);
+
+    void draw(DrawAdapter adapter);
 }
