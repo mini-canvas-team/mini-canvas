@@ -1,13 +1,14 @@
 package canvas.controller;
 
 import java.util.Set;
+import java.util.HashSet;
 
 import canvas.model.Color;
 import canvas.view.Adapter;
 
 public class Controller {
     private static Controller instance = new Controller();
-    private Set<Adapter> adapters;
+    private Set<Adapter> adapters = new HashSet<Adapter>();
 
     private Listener listener;
     private ComponentContainer container;
@@ -22,14 +23,14 @@ public class Controller {
     }
 
     public void addAdapter(Adapter adapter) {
-        adapters.add(adapter);
+        this.adapters.add(adapter);
     }
 
     public static Controller getInstance() {
         return instance;
     }
 
-    public Listener getListner(Listener listener) {
+    public Listener getListner() {
         return this.listener;
     }
 
