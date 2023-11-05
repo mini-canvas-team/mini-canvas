@@ -11,14 +11,13 @@ import canvas.controller.Listener;
 import canvas.view.swing.SwingConverter;
 
 public class PropertyPanel extends JPanel {
-    private Listener listener;
     private SwingConverter converter;
     Color color;
     PropertyArea areaWidth, areaHeight, areaRed, areaGreen, areaBlue;
 
     public PropertyPanel(Listener listener) {
         super();
-        this.listener = listener;
+        this.converter = new SwingConverter();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
@@ -33,20 +32,20 @@ public class PropertyPanel extends JPanel {
         });
 
         areaHeight = new PropertyArea("Height");
-        areaWidth.addActionLisenter(new ActionListener() {
+        areaHeight.addActionLisenter(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    listener.changeHeight(Integer.parseInt(areaWidth.getText()));
+                    listener.changeHeight(Integer.parseInt(areaHeight.getText()));
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
             }
         });
         areaRed = new PropertyArea("Red");
-        areaWidth.addActionLisenter(new ActionListener() {
+        areaRed.addActionLisenter(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Integer red = Integer.parseInt(areaWidth.getText());
+                    Integer red = Integer.parseInt(areaRed.getText());
                     listener.changeColor(converter.convertColor(new Color(red, color.getGreen(),
                             color.getBlue())));
                 } catch (Exception ex) {
@@ -55,11 +54,11 @@ public class PropertyPanel extends JPanel {
             }
         });
         areaGreen = new PropertyArea("Green");
-        areaWidth.addActionLisenter(new ActionListener() {
+        areaGreen.addActionLisenter(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Integer green = Integer.parseInt(areaWidth.getText());
+                    Integer green = Integer.parseInt(areaGreen.getText());
                     listener.changeColor(
                             converter.convertColor(new Color(color.getRed(), green, color.getBlue())));
                 } catch (Exception ex) {
@@ -69,10 +68,10 @@ public class PropertyPanel extends JPanel {
         });
 
         areaBlue = new PropertyArea("Blue");
-        areaWidth.addActionLisenter(new ActionListener() {
+        areaBlue.addActionLisenter(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Integer blue = Integer.parseInt(areaWidth.getText());
+                    Integer blue = Integer.parseInt(areaBlue.getText());
                     listener.changeColor(
                             converter.convertColor(new Color(color.getRed(), color.getGreen(), blue)));
                 } catch (Exception ex) {
@@ -91,11 +90,27 @@ public class PropertyPanel extends JPanel {
     public void showProperties(Integer width, Integer height, Color color) {
         this.color = color;
 
-        areaWidth.setText(width.toString());
-        areaHeight.setText(height.toString());
-        areaRed.setText(Integer.toString(color.getRed()));
-        areaGreen.setText(Integer.toString(color.getGreen()));
-        areaBlue.setText(Integer.toString(color.getBlue()));
+        try {
+            areaWidth.setText(width.toString());
 
+        } catch (Exception e) {
+            areaWidth.setText("null");
+        }
+
+        try {
+            areaHeight.setText(height.toString());
+        } catch (Exception e) {
+            areaHeight.setText("null");
+        }
+
+        if (color == null) {
+            areaRed.setText("null");
+            areaGreen.setText("null");
+            areaBlue.setText("null");
+        } else {
+            areaRed.setText(Integer.toString(color.getRed()));
+            areaGreen.setText(Integer.toString(color.getGreen()));
+            areaBlue.setText(Integer.toString(color.getBlue()));
+        }
     }
 }
