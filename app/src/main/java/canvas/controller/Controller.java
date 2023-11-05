@@ -7,14 +7,12 @@ public class Controller {
     private static Controller instance = new Controller();
     private ComponentContainer componentContainer;
     private ObjectFactory objectFactory;
-    private int selectedObject;
-    private Color selectedColor;
+    private ViewDto viewDto;
 
     private Controller() {
         componentContainer = new ComponentContainer();
         objectFactory = new ObjectFactory();
-        selectedObject = 0;
-        selectedColor = new Color(255, 255, 255);
+        viewDto = new ViewDto();
     }
 
     public static Controller getInstance() {
@@ -22,18 +20,18 @@ public class Controller {
     }
 
     // left panel event
-    public void setSelectedObject(int type) {
-        selectedObject = type;
+    public void setSelectedType(int type) {
+        viewDto.setSelectedType(type);
     }
 
     // down panel event
     public void setSelectedColor(Color color) {
-        selectedColor = color;
+        viewDto.setSelectedColor(color);
     }
 
     // canvas event
     public void click(Point p) {
-        if (selectedObject == 0) {
+        if (viewDto.getSelectedType() == 0) {
             selectObject(p);
             showProperties();
         }
@@ -44,7 +42,7 @@ public class Controller {
     }
 
     public void drag(Point p1, Point p2) {
-        if (selectedObject == 0) {
+        if (viewDto.getSelectedType() == 0) {
             selectObjects(p1, p2);
         } else {
             addObject(p1, p2);
@@ -59,7 +57,7 @@ public class Controller {
     }
 
     private void addObject(Point p1, Point p2) {
-        componentContainer.add(objectFactory.create(selectedObject, p1, p2, selectedColor));
+        componentContainer.add(objectFactory.create(viewDto.getSelectedType(), p1, p2, viewDto.getSelectedColor()));
         redraw();
     }
 
