@@ -3,6 +3,7 @@ package canvas.controller;
 import java.util.Collections;
 import java.util.List;
 
+import canvas.model.Color;
 import canvas.model.Component;
 import canvas.model.Composite;
 import canvas.model.Point;
@@ -14,6 +15,11 @@ public class ComponentContainer {
     public ComponentContainer() {
         resources = new Composite();
         selections = new Composite();
+    }
+
+    public void add(Component component) {
+        resources.add(component);
+        // Need to discuss add component need to be selections?
     }
 
     public void select(Point p1, Point p2) {
@@ -30,6 +36,31 @@ public class ComponentContainer {
         List<Component> l = selections.get();
         Collections.reverse(l);
         l.forEach(component -> resources.addFront(component));
+    }
+
+    public void setColor(Color color) {
+        selections.setColor(color);
+    }
+
+    public void setHeight(Integer height) {
+        selections.setHeight(height);
+    }
+
+    public void setWidth(Integer width) {
+        selections.setWidth(width);
+
+    }
+
+    public Color getColor() {
+        return selections.getColor();
+    }
+
+    public Integer getHeight() {
+        return selections.getHeight();
+    }
+
+    public Integer getWidth() {
+        return selections.getWidth();
     }
 
     public void setBack() {
