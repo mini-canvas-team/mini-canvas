@@ -9,11 +9,11 @@ public class Point {
         this.y = y;
     }
 
-    protected int getX() {
+    public int getX() {
         return x;
     }
 
-    protected int getY() {
+    public int getY() {
         return y;
     }
 

@@ -13,15 +13,15 @@ public class Color {
         this.blue = blue;
     }
 
-    protected int getRed() {
+    public int getRed() {
         return red;
     }
 
-    protected int getBlue() {
+    public int getBlue() {
         return blue;
     }
 
-    protected int getGreen() {
+    public int getGreen() {
         return green;
     }
 
