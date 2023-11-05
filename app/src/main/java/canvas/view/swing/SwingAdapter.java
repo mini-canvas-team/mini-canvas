@@ -2,7 +2,6 @@ package canvas.view.swing;
 
 import canvas.controller.ElementDto;
 import canvas.model.Color;
-import canvas.model.Component;
 import canvas.view.Adapter;
 
 public class SwingAdapter implements Adapter {
