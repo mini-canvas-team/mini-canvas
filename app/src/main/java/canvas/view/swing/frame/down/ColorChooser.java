@@ -13,10 +13,8 @@ public class ColorChooser extends JColorChooser {
         setColor(Color.BLACK);
         AbstractColorChooserPanel[] panels = getChooserPanels();
 
-        Stream.of(panels).forEach(panel -> {
-            if (!panel.getDisplayName().endsWith("(S)")) {
-                removeChooserPanel(panel);
-            }
+        Stream.of(panels).skip(1).forEach(panel -> {
+            removeChooserPanel(panel);
         });
     }
 }
