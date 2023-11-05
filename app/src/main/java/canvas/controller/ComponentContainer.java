@@ -8,6 +8,7 @@ import canvas.model.Color;
 import canvas.model.Component;
 import canvas.model.Composite;
 import canvas.model.Point;
+import canvas.view.Adapter;
 
 public class ComponentContainer {
     private Composite resources;
@@ -43,7 +44,6 @@ public class ComponentContainer {
 
     public void setWidth(Integer width) {
         selections.setWidth(width);
-
     }
 
     public void setText(String text) {
@@ -77,5 +77,9 @@ public class ComponentContainer {
     public void setBack() {
         selections.get().forEach(component -> resources.remove(component));
         selections.get().forEach(component -> resources.add(component));
+    }
+
+    public void draw(Adapter adapter) {
+        resources.draw(adapter);
     }
 }

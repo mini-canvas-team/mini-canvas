@@ -46,7 +46,7 @@ public class Controller {
     }
 
     protected void draw() {
-        // TODO
+        this.adapters.forEach(adapter -> this.container.draw(adapter));
     }
 
     protected void showProperties() {
@@ -54,6 +54,6 @@ public class Controller {
         Integer height = container.getHeight();
         Color color = container.getColor();
 
-        // TODO
+        this.adapters.forEach(adapter -> adapter.showProperties(width, height, color));
     }
 }
