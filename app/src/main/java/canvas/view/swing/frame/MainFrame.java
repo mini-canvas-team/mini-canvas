@@ -27,6 +27,5 @@ public class MainFrame extends JFrame {
         add(new PropertyPanel(listener), BorderLayout.EAST);
         add(new TypePanel(listener, 6), BorderLayout.WEST);
         setVisible(true);
-
     }
 }
