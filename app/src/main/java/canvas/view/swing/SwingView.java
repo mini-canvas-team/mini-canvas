@@ -11,7 +11,6 @@ public class SwingView implements View {
 
     protected SwingView() {
         this.adapter = new SwingAdapter(this);
-        new MainFrame(listener);
     }
 
     @Override
@@ -24,4 +23,7 @@ public class SwingView implements View {
         return adapter;
     }
 
+    public void show() {
+        new MainFrame(listener);
+    }
 }
