@@ -89,6 +89,7 @@ public class Listener {
         if (type != null) {
             Element element = controller.getFactory().create(type, p1, p2, color);
             controller.getContainer().add(element);
+            controller.draw();
         }
     }
 
