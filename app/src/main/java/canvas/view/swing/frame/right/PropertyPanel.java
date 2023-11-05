@@ -2,9 +2,10 @@ package canvas.view.swing.frame.right;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.Color;
 
 import canvas.controller.Listener;
@@ -14,6 +15,7 @@ public class PropertyPanel extends JPanel {
     private SwingConverter converter;
     Color color;
     PropertyArea areaWidth, areaHeight, areaRed, areaGreen, areaBlue;
+    JButton buttonFront, buttonBack;
 
     public PropertyPanel(Listener listener) {
         super();
@@ -80,11 +82,28 @@ public class PropertyPanel extends JPanel {
             }
         });
 
+        buttonFront = new JButton("Front");
+        buttonFront.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listener.changeIndexFront();
+            }
+        });
+
+        buttonBack = new JButton("Back");
+        buttonBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listener.changeIndexBack();
+            }
+        });
+
         add(areaWidth);
         add(areaHeight);
         add(areaRed);
         add(areaGreen);
         add(areaBlue);
+        add(buttonFront);
+        add(buttonBack);
+
     }
 
     public void showProperties(Integer width, Integer height, Color color) {
