@@ -2,6 +2,7 @@ package canvas.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import canvas.model.Color;
 import canvas.model.Component;
@@ -19,7 +20,8 @@ public class ComponentContainer {
 
     public void add(Component component) {
         resources.add(component);
-        // Need to discuss add component need to be selections?
+
+        selections.ofList(Collections.singletonList(component));
     }
 
     public void select(Point p1, Point p2) {
@@ -27,7 +29,8 @@ public class ComponentContainer {
     }
 
     public void selectOne(Point p1) {
-        selections.ofList(resources.filter(component -> component.contains(p1, p1)).stream().limit(1).toList());
+        selections.ofList(resources.filter(component -> component.contains(p1, p1)).stream().limit(1)
+                .collect(Collectors.toList()));
     }
 
     public void setColor(Color color) {

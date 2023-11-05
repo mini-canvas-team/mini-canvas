@@ -1,6 +1,7 @@
 package canvas.controller;
 
 import canvas.model.Color;
+import canvas.model.Element;
 import canvas.model.Point;
 
 public class Listener {
@@ -82,9 +83,13 @@ public class Listener {
     }
 
     private void addObject(Point p1, Point p2) {
+        ElementType type = getViewState().getType();
+        Color color = getViewState().getColor();
 
-        controller.draw();
-        controller.showProperties();
+        if (type != null) {
+            Element element = controller.getFactory().create(type, p1, p2, color);
+            controller.getContainer().add(element);
+        }
     }
 
     public void drag(Point p1, Point p2) {
