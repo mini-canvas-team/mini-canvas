@@ -1,6 +1,6 @@
 package canvas.model;
 
-import canvas.controller.DrawAdapter;
+import canvas.view.Adapter;
 
 public interface Component {
     void setWidth(int width);
@@ -21,5 +21,5 @@ public interface Component {
 
     boolean contains(Point p1, Point p2);
 
-    void draw(DrawAdapter adapter);
+    void draw(Adapter adapter);
 }

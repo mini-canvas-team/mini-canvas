@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import canvas.controller.DrawAdapter;
+import canvas.view.Adapter;
 
 public class Composite implements Component {
     private List<Component> components = new ArrayList<>();
@@ -65,7 +65,7 @@ public class Composite implements Component {
     }
 
     @Override
-    public void draw(DrawAdapter adapter) {
+    public void draw(Adapter adapter) {
         components.forEach(component -> component.draw(adapter));
     }
 
