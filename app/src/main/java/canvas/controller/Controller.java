@@ -11,13 +11,13 @@ public class Controller {
 
     private Listener listener;
     private ComponentContainer container;
-    private ObjectFactory factory;
+    private ElementFactory factory;
     private ViewState viewState;
 
     private Controller() {
         listener = new Listener(this);
         container = new ComponentContainer();
-        factory = new ObjectFactory();
+        factory = new ElementFactory();
         viewState = new ViewState();
     }
 
@@ -37,7 +37,7 @@ public class Controller {
         return this.container;
     }
 
-    protected ObjectFactory getFactory() {
+    protected ElementFactory getFactory() {
         return this.factory;
     }
 
@@ -46,7 +46,7 @@ public class Controller {
     }
 
     protected void draw() {
-        // TODO
+        this.adapters.forEach(adapter -> this.container.draw(adapter));
     }
 
     protected void showProperties() {
@@ -54,6 +54,6 @@ public class Controller {
         Integer height = container.getHeight();
         Color color = container.getColor();
 
-        // TODO
+        this.adapters.forEach(adapter -> adapter.showProperties(width, height, color));
     }
 }

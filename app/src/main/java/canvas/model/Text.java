@@ -6,9 +6,8 @@ import canvas.view.Adapter;
 public class Text extends Element {
     private String text;
 
-    public Text(Point p1, Point p2, Color color, String text) {
+    public Text(Point p1, Point p2, Color color) {
         super(p1, p2, color);
-        this.text = text;
     }
 
     @Override

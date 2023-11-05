@@ -1,6 +1,7 @@
 package canvas.controller;
 
 import canvas.model.Color;
+import canvas.model.Element;
 import canvas.model.Point;
 
 public class Listener {
@@ -44,6 +45,16 @@ public class Listener {
         controller.draw();
     }
 
+    public void changeText(String text) {
+        getContainer().setText(text);
+        controller.draw();
+    }
+
+    public void changePath(String path) {
+        getContainer().setPath(path);
+        controller.draw();
+    }
+
     public void changeIndexFront() {
         getContainer().setFront();
         controller.draw();
@@ -56,7 +67,7 @@ public class Listener {
 
     // canvas event
     public void click(Point p) {
-        if (getViewState().getType() == 0) {
+        if (getViewState().getType() == null) {
             selectObject(p);
             controller.showProperties();
         }
@@ -72,11 +83,17 @@ public class Listener {
     }
 
     private void addObject(Point p1, Point p2) {
-        // TODO
+        ElementType type = getViewState().getType();
+        Color color = getViewState().getColor();
+
+        if (type != null) {
+            Element element = controller.getFactory().create(type, p1, p2, color);
+            controller.getContainer().add(element);
+        }
     }
 
     public void drag(Point p1, Point p2) {
-        if (getViewState().getType() == 0) {
+        if (getViewState().getType() == null) {
             this.selectObjects(p1, p2);
         } else {
             this.addObject(p1, p2);
