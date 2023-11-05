@@ -7,14 +7,14 @@ import canvas.controller.Listener;
 import canvas.view.swing.SwingConverter;
 
 public class ColorPanel extends JPanel implements ChangeListener {
-    ColorChooser chooser;
     Listener listener;
+    ColorChooser chooser;
     SwingConverter converter;
 
     public ColorPanel(Listener listener) {
         super();
-        this.chooser = new ColorChooser();
         this.listener = listener;
+        this.chooser = new ColorChooser();
         this.converter = new SwingConverter();
         chooser.getSelectionModel().addChangeListener(this);
         add(chooser);
