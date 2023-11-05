@@ -4,19 +4,24 @@ import java.util.Arrays;
 
 import canvas.model.*;
 
+@FunctionalInterface
+interface TriFunction<T, U, V, R> {
+    R apply(T t, U u, V v);
+}
+
 public enum ElementType {
-    LINE(1, Line.class),
-    RECTANGLE(2, Rectangle.class),
-    ELLIPSE(3, Ellipse.class),
-    TEXT(4, Text.class),
-    IMAGE(5, Image.class);
+    LINE(1, (p1, p2, color) -> new Line(p1, p2, color)),
+    RECTANGLE(2, (p1, p2, color) -> new Rectangle(p1, p2, color)),
+    ELLIPSE(3, (p1, p2, color) -> new Ellipse(p1, p2, color)),
+    TEXT(4, (p1, p2, color) -> new Text(p1, p2, color)),
+    IMAGE(5, (p1, p2, color) -> new Image(p1, p2, color));
 
     private final int id;
-    private final Class<? extends Element> elementClass;
+    private final TriFunction<Point, Point, Color, Element> constructor;
 
-    ElementType(int id, Class<? extends Element> elementClass) {
+    private ElementType(int id, TriFunction<Point, Point, Color, Element> constructor) {
         this.id = id;
-        this.elementClass = elementClass;
+        this.constructor = constructor;
     }
 
     public static ElementType getById(int typeId) {
@@ -26,7 +31,7 @@ public enum ElementType {
                 .orElse(null);
     }
 
-    protected Class<? extends Element> getElementClass() {
-        return elementClass;
+    protected TriFunction<Point, Point, Color, Element> getConstructor() {
+        return this.constructor;
     }
 }

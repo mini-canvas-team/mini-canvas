@@ -30,14 +30,6 @@ public class ComponentContainer {
         selections.ofList(resources.filter(component -> component.contains(p1, p1)).stream().limit(1).toList());
     }
 
-    public void setFront() {
-        selections.get().forEach(component -> resources.remove(component));
-
-        List<Component> l = selections.get();
-        Collections.reverse(l);
-        l.forEach(component -> resources.addFront(component));
-    }
-
     public void setColor(Color color) {
         selections.setColor(color);
     }
@@ -51,6 +43,14 @@ public class ComponentContainer {
 
     }
 
+    public void setText(String text) {
+        selections.setText(text);
+    }
+
+    public void setPath(String path) {
+        selections.setPath(path);
+    }
+
     public Color getColor() {
         return selections.getColor();
     }
@@ -61,6 +61,14 @@ public class ComponentContainer {
 
     public Integer getWidth() {
         return selections.getWidth();
+    }
+
+    public void setFront() {
+        selections.get().forEach(component -> resources.remove(component));
+
+        List<Component> l = selections.get();
+        Collections.reverse(l);
+        l.forEach(component -> resources.addFront(component));
     }
 
     public void setBack() {

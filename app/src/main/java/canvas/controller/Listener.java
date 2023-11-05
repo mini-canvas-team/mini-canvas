@@ -44,6 +44,16 @@ public class Listener {
         controller.draw();
     }
 
+    public void changeText(String text) {
+        getContainer().setText(text);
+        controller.draw();
+    }
+
+    public void changePath(String path) {
+        getContainer().setPath(path);
+        controller.draw();
+    }
+
     public void changeIndexFront() {
         getContainer().setFront();
         controller.draw();
