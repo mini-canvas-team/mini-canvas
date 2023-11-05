@@ -1,13 +1,15 @@
-package canvas.view;
+package canvas.view.swing;
 
 import canvas.controller.Listener;
+import canvas.view.Adapter;
+import canvas.view.View;
 
-public class AwtView implements View {
+public class SwingView implements View {
     private Listener listener;
     private Adapter adapter;
 
-    protected AwtView() {
-        this.adapter = new AwtAdapter(this);
+    protected SwingView() {
+        this.adapter = new SwingAdapter(this);
     }
 
     @Override
@@ -17,7 +19,7 @@ public class AwtView implements View {
 
     @Override
     public Adapter getAdapter() {
-        return getAdapter();
+        return adapter;
     }
 
 }
