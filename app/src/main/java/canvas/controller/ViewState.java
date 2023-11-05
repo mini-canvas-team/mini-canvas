@@ -3,20 +3,20 @@ package canvas.controller;
 import canvas.model.Color;
 
 public class ViewState {
-    private int type;
+    private ElementType type;
     private Color color;
 
     public ViewState() {
-        type = 0;
-        color = new Color(255, 255, 255);
+        this.type = null;
+        this.color = new Color(255, 255, 255);
     }
 
-    public int getType() {
-        return type;
+    public ElementType getType() {
+        return this.type;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setType(int typeId) {
+        this.type = ElementType.getById(typeId);
     }
 
     public Color getColor() {

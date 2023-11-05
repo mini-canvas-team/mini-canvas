@@ -56,7 +56,7 @@ public class Listener {
 
     // canvas event
     public void click(Point p) {
-        if (getViewState().getType() == 0) {
+        if (getViewState().getType() == null) {
             selectObject(p);
             controller.showProperties();
         }
@@ -72,11 +72,13 @@ public class Listener {
     }
 
     private void addObject(Point p1, Point p2) {
-        // TODO
+
+        controller.draw();
+        controller.showProperties();
     }
 
     public void drag(Point p1, Point p2) {
-        if (getViewState().getType() == 0) {
+        if (getViewState().getType() == null) {
             this.selectObjects(p1, p2);
         } else {
             this.addObject(p1, p2);
