@@ -8,7 +8,15 @@ public class SwingConverter {
         return new Color(color.getRed(), color.getGreen(), color.getBlue());
     }
 
+    public java.awt.Color convertColor(Color color) {
+        return new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue());
+    }
+
     public Point convertPoint(java.awt.Point point) {
         return new Point(point.x, point.y);
+    }
+
+    public java.awt.Point convertPoint(Point point) {
+        return new java.awt.Point(point.getX(), point.getY());
     }
 }
