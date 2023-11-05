@@ -1,5 +1,8 @@
 package canvas.model;
 
+import canvas.controller.ElementDto;
+import canvas.view.Adapter;
+
 public class Image extends Element {
     private String path;
 
@@ -15,5 +18,14 @@ public class Image extends Element {
     @Override
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    @Override
+    public void draw(Adapter adapter) {
+        adapter.drawImage(new ElementDto(this));
     }
 }
