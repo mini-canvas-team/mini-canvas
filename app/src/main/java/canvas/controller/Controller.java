@@ -1,112 +1,59 @@
 package canvas.controller;
 
+import java.util.Set;
+
 import canvas.model.Color;
-import canvas.model.Point;
+import canvas.view.Adapter;
 
 public class Controller {
     private static Controller instance = new Controller();
-    private ComponentContainer componentContainer;
-    private ObjectFactory objectFactory;
-    private ViewDto viewDto;
+    private Set<Adapter> adapters;
+
+    private Listener listener;
+    private ComponentContainer container;
+    private ObjectFactory factory;
+    private ViewState viewState;
 
     private Controller() {
-        componentContainer = new ComponentContainer();
-        objectFactory = new ObjectFactory();
-        viewDto = new ViewDto();
+        listener = new Listener(this);
+        container = new ComponentContainer();
+        factory = new ObjectFactory();
+        viewState = new ViewState();
+    }
+
+    public void addAdapter(Adapter adapter) {
+        adapters.add(adapter);
     }
 
     public static Controller getInstance() {
         return instance;
     }
 
-    // left panel event
-    public void setSelectedType(int type) {
-        viewDto.setSelectedType(type);
+    public Listener getListner(Listener listener) {
+        return this.listener;
     }
 
-    // down panel event
-    public void setSelectedColor(Color color) {
-        viewDto.setSelectedColor(color);
+    protected ComponentContainer getContainer() {
+        return this.container;
     }
 
-    // canvas event
-    public void click(Point p) {
-        if (viewDto.getSelectedType() == 0) {
-            selectObject(p);
-            showProperties();
-        }
+    protected ObjectFactory getFactory() {
+        return this.factory;
     }
 
-    public void selectObject(Point p) {
-        componentContainer.selectOne(p);
+    protected ViewState getViewState() {
+        return this.viewState;
     }
 
-    public void drag(Point p1, Point p2) {
-        if (viewDto.getSelectedType() == 0) {
-            selectObjects(p1, p2);
-        } else {
-            addObject(p1, p2);
-            redraw();
-        }
-        showProperties();
+    protected void draw() {
+        // TODO
     }
 
-    private void selectObjects(Point p1, Point p2) {
-        componentContainer.select(p1, p2);
-        showProperties();
-    }
+    protected void showProperties() {
+        Integer width = container.getWidth();
+        Integer height = container.getHeight();
+        Color color = container.getColor();
 
-    private void addObject(Point p1, Point p2) {
-        componentContainer.add(objectFactory.create(viewDto.getSelectedType(), p1, p2, viewDto.getSelectedColor()));
-        redraw();
-    }
-
-    private void redraw() {
-
-    }
-
-    // right panel event
-    public void changeWidth(Integer width) {
-        componentContainer.setWidth(width);
-        redraw();
-    }
-
-    public void changeHeight(Integer height) {
-        componentContainer.setHeight(height);
-        redraw();
-    }
-
-    public void changeColor(Color color) {
-        componentContainer.setColor(color);
-        redraw();
-    }
-
-    public void changeIndexFront() {
-        componentContainer.setFront();
-        redraw();
-    }
-
-    public void changeIndexBack() {
-        componentContainer.setBack();
-        redraw();
-    }
-
-    // right panel function
-    private void showProperties() {
-        showObjectWidth();
-        showObjectHeight();
-        showObjectColor();
-    }
-
-    private void showObjectWidth() {
-        Integer width = componentContainer.getWidth();
-    }
-
-    private void showObjectHeight() {
-        Integer height = componentContainer.getHeight();
-    }
-
-    private void showObjectColor() {
-        Color color = componentContainer.getColor();
+        // TODO
     }
 }

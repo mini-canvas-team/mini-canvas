@@ -1,6 +1,6 @@
 package canvas.model;
 
-import canvas.controller.DrawAdapter;
+import canvas.view.Adapter;
 
 public abstract class Element implements Component {
     private Point position;
@@ -61,7 +61,7 @@ public abstract class Element implements Component {
     }
 
     @Override
-    public void draw(DrawAdapter adapter) {
+    public void draw(Adapter adapter) {
         adapter.draw(this);
     }
 }

@@ -1,7 +1,7 @@
-package canvas.controller;
+package canvas.view;
 
 import canvas.model.Component;
 
-public interface DrawAdapter {
+public interface Adapter {
     void draw(Component component);
 }
