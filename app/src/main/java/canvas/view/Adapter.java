@@ -1,7 +1,18 @@
 package canvas.view;
 
-import canvas.model.Component;
+import canvas.controller.ElementDto;
+import canvas.model.Color;
 
 public interface Adapter {
-    void draw(Component component);
+    void drawLine(ElementDto element);
+
+    void drawRectangle(ElementDto element);
+
+    void drawEllipse(ElementDto element);
+
+    void drawText(ElementDto element);
+
+    void drawImage(ElementDto element);
+
+    void showProperties(Integer width, Integer height, Color color);
 }

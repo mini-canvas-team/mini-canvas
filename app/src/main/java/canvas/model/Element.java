@@ -50,6 +50,10 @@ public abstract class Element implements Component {
         return color;
     }
 
+    public Point getPosition() {
+        return position;
+    }
+
     @Override
     public boolean contains(Point p1, Point p2) {
         Point plt = Point.topLeft(p1, p2);
@@ -61,7 +65,5 @@ public abstract class Element implements Component {
     }
 
     @Override
-    public void draw(Adapter adapter) {
-        adapter.draw(this);
-    }
+    public abstract void draw(Adapter adapter);
 }
