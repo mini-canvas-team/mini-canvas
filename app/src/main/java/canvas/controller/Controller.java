@@ -1,9 +1,13 @@
 package canvas.controller;
 
+import java.util.Set;
+
 import canvas.model.Color;
+import canvas.view.Adapter;
 
 public class Controller {
     private static Controller instance = new Controller();
+    private Set<Adapter> adapters;
 
     private Listener listener;
     private ComponentContainer container;
@@ -15,6 +19,10 @@ public class Controller {
         container = new ComponentContainer();
         factory = new ObjectFactory();
         viewState = new ViewState();
+    }
+
+    public void addAdapter(Adapter adapter) {
+        adapters.add(adapter);
     }
 
     public static Controller getInstance() {
