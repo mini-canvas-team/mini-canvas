@@ -9,17 +9,14 @@ import java.awt.event.ActionListener;
 import java.awt.Color;
 
 import canvas.controller.Listener;
-import canvas.view.swing.SwingConverter;
 
 public class PropertyPanel extends JPanel {
-    private SwingConverter converter;
-    Color color;
-    PropertyArea areaWidth, areaHeight, areaRed, areaGreen, areaBlue;
-    JButton buttonFront, buttonBack;
+    private PropertyArea areaWidth, areaHeight;
+    private PropertyColor areaColor;
+    private JButton buttonFront, buttonBack;
 
     public PropertyPanel(Listener listener) {
         super();
-        this.converter = new SwingConverter();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
@@ -43,44 +40,8 @@ public class PropertyPanel extends JPanel {
                 }
             }
         });
-        areaRed = new PropertyArea("Red");
-        areaRed.addActionLisenter(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Integer red = Integer.parseInt(areaRed.getText());
-                    listener.changeColor(converter.convertColor(new Color(red, color.getGreen(),
-                            color.getBlue())));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-        areaGreen = new PropertyArea("Green");
-        areaGreen.addActionLisenter(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Integer green = Integer.parseInt(areaGreen.getText());
-                    listener.changeColor(
-                            converter.convertColor(new Color(color.getRed(), green, color.getBlue())));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
-
-        areaBlue = new PropertyArea("Blue");
-        areaBlue.addActionLisenter(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Integer blue = Integer.parseInt(areaBlue.getText());
-                    listener.changeColor(
-                            converter.convertColor(new Color(color.getRed(), color.getGreen(), blue)));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-            }
-        });
+        areaColor = new PropertyColor(listener);
 
         buttonFront = new JButton("Front");
         buttonFront.addActionListener(new ActionListener() {
@@ -98,17 +59,13 @@ public class PropertyPanel extends JPanel {
 
         add(areaWidth);
         add(areaHeight);
-        add(areaRed);
-        add(areaGreen);
-        add(areaBlue);
+        add(areaColor);
         add(buttonFront);
         add(buttonBack);
 
     }
 
     public void showProperties(Integer width, Integer height, Color color) {
-        this.color = color;
-
         try {
             areaWidth.setText(width.toString());
 
@@ -122,14 +79,6 @@ public class PropertyPanel extends JPanel {
             areaHeight.setText("null");
         }
 
-        if (color == null) {
-            areaRed.setText("null");
-            areaGreen.setText("null");
-            areaBlue.setText("null");
-        } else {
-            areaRed.setText(Integer.toString(color.getRed()));
-            areaGreen.setText(Integer.toString(color.getGreen()));
-            areaBlue.setText(Integer.toString(color.getBlue()));
-        }
+        areaColor.showColor(color);
     }
 }
