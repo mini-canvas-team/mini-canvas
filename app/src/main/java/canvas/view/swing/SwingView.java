@@ -4,10 +4,15 @@ import canvas.controller.Listener;
 import canvas.view.Adapter;
 import canvas.view.View;
 import canvas.view.swing.frame.MainFrame;
+import canvas.view.swing.frame.SwingCanvas;
+import canvas.view.swing.frame.right.PropertyPanel;
 
 public class SwingView implements View {
     private Listener listener;
     private Adapter adapter;
+    private MainFrame mainFrame;
+    private PropertyPanel propertyPanel;
+    private SwingCanvas canvas;
 
     protected SwingView() {
         this.adapter = new SwingAdapter(this);
@@ -24,6 +29,12 @@ public class SwingView implements View {
     }
 
     public void show() {
-        new MainFrame(listener);
+        mainFrame = new MainFrame(listener);
+        canvas = mainFrame.getCanvas();
+        propertyPanel = mainFrame.getPropertyPanel();
+    }
+
+    public PropertyPanel getPropertyPanel() {
+        return propertyPanel;
     }
 }

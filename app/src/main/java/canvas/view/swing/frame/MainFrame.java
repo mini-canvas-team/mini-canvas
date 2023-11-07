@@ -12,6 +12,9 @@ import canvas.view.swing.frame.left.TypePanel;
 import canvas.view.swing.frame.right.PropertyPanel;
 
 public class MainFrame extends JFrame {
+    private PropertyPanel propertyPanel;
+    private SwingCanvas canvas;
+
     public MainFrame(Listener listener) {
         super("miniFrame");
 
@@ -22,10 +25,20 @@ public class MainFrame extends JFrame {
         setSize(screenSize.width, screenSize.height * 3 / 4);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        add(new SwingCanvas(listener), BorderLayout.CENTER);
+        canvas = new SwingCanvas(listener);
+        add(canvas, BorderLayout.CENTER);
         add(new ColorPanel(listener), BorderLayout.SOUTH);
-        add(new PropertyPanel(listener), BorderLayout.EAST);
+        propertyPanel = new PropertyPanel(listener);
+        add(propertyPanel, BorderLayout.EAST);
         add(new TypePanel(listener, 6), BorderLayout.WEST);
         setVisible(true);
+    }
+
+    public PropertyPanel getPropertyPanel() {
+        return propertyPanel;
+    }
+
+    public SwingCanvas getCanvas() {
+        return canvas;
     }
 }

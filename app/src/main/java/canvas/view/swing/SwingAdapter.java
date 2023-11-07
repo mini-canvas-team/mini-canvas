@@ -33,6 +33,7 @@ public class SwingAdapter implements Adapter {
 
     @Override
     public void showProperties(Integer width, Integer height, Color color) {
+        view.getPropertyPanel().showProperties(width, height, new SwingConverter().convertColor(color));
     }
 
 }
