@@ -52,7 +52,6 @@ public class Controller {
             this.container.draw(adapter);
             adapter.paint();
         });
-        this.showProperties();
     }
 
     protected void showProperties() {

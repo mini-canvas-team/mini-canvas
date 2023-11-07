@@ -90,6 +90,7 @@ public class Listener {
             Element element = controller.getFactory().create(type, p1, p2, color);
             controller.getContainer().add(element);
             controller.draw();
+            controller.showProperties();
         }
     }
 
@@ -98,8 +99,6 @@ public class Listener {
             this.selectObjects(p1, p2);
         } else {
             this.addObject(p1, p2);
-            controller.draw();
         }
-        controller.showProperties();
     }
 }
