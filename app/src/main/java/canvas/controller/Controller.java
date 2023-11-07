@@ -47,8 +47,12 @@ public class Controller {
     }
 
     protected void draw() {
-        this.adapters.forEach(adapter -> this.container.draw(adapter));
-        showProperties();
+        this.adapters.forEach(adapter -> {
+            adapter.clear();
+            this.container.draw(adapter);
+            adapter.paint();
+        });
+        this.showProperties();
     }
 
     protected void showProperties() {

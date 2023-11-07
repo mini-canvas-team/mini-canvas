@@ -52,6 +52,10 @@ public class SwingView implements View {
         return this.instructions;
     }
 
+    public void paint() {
+        this.canvas.repaint();
+    }
+
     public PropertyPanel getPropertyPanel() {
         return propertyPanel;
     }

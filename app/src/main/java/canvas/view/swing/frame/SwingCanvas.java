@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
+import java.util.function.Function;
 import java.awt.Graphics;
 
 import canvas.controller.Listener;
@@ -56,5 +58,7 @@ public class SwingCanvas extends Canvas implements MouseListener {
 
     @Override
     public void paint(Graphics g) {
+        List<Function<Graphics, Void>> instructions = this.view.getInstructions();
+        instructions.forEach(instruction -> instruction.apply(g));
     }
 }

@@ -12,23 +12,38 @@ public class SwingAdapter implements Adapter {
     }
 
     @Override
+    public void clear() {
+        this.view.clearInstructions();
+    }
+
+    @Override
+    public void paint() {
+        this.view.paint();
+    }
+
+    @Override
     public void drawLine(ElementDto element) {
+        this.view.addInstruction(null);
     }
 
     @Override
     public void drawRectangle(ElementDto element) {
+        this.view.addInstruction(null);
     }
 
     @Override
     public void drawEllipse(ElementDto element) {
+        this.view.addInstruction(null);
     }
 
     @Override
     public void drawText(ElementDto element) {
+        this.view.addInstruction(null);
     }
 
     @Override
     public void drawImage(ElementDto element) {
+        this.view.addInstruction(null);
     }
 
     @Override
