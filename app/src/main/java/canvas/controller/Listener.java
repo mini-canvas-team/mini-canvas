@@ -33,16 +33,19 @@ public class Listener {
     public void changeWidth(Integer width) {
         getContainer().setWidth(width);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeHeight(Integer height) {
         getContainer().setHeight(height);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeColor(Color color) {
         getContainer().setColor(color);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeText(String text) {
