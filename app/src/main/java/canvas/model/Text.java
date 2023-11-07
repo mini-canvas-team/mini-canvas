@@ -8,6 +8,8 @@ public class Text extends Element {
 
     public Text(Point p1, Point p2, Color color) {
         super(p1, p2, color);
+        /* TODO: will be removed after implementing text input */
+        this.setText("Temp Text");
     }
 
     @Override
