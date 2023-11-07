@@ -6,7 +6,7 @@ public class SelectBtn extends JButton {
     private int index;
 
     public SelectBtn(int i) {
-        super();
+        super("" + i);
 
         index = i;
     }
