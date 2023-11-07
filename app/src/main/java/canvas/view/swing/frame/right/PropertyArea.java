@@ -31,7 +31,7 @@ public class PropertyArea extends JPanel {
         return input.getText();
     }
 
-    public void addActionLisenter(ActionListener listener) {
+    public void addActionListener(ActionListener listener) {
         input.addActionListener(listener);
     }
 }

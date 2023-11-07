@@ -20,7 +20,7 @@ public class PropertyPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
-        areaWidth.addActionLisenter(new ActionListener() {
+        areaWidth.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     listener.changeWidth(Integer.parseInt(areaWidth.getText()));
@@ -31,7 +31,7 @@ public class PropertyPanel extends JPanel {
         });
 
         areaHeight = new PropertyArea("Height");
-        areaHeight.addActionLisenter(new ActionListener() {
+        areaHeight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     listener.changeHeight(Integer.parseInt(areaHeight.getText()));
