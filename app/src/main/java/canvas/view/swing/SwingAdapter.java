@@ -1,7 +1,16 @@
 package canvas.view.swing;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.Ellipse2D;
+import java.util.function.Function;
+
+import javax.swing.ImageIcon;
+
 import canvas.controller.ElementDto;
 import canvas.model.Color;
+import canvas.model.Point;
 import canvas.view.Adapter;
 
 public class SwingAdapter implements Adapter {
@@ -23,27 +32,80 @@ public class SwingAdapter implements Adapter {
 
     @Override
     public void drawLine(ElementDto element) {
-        this.view.addInstruction(null);
+        Function<Graphics, Void> instruction = g -> {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+
+            Point position = element.getPosition();
+            int x = position.getX();
+            int y = position.getY();
+            g2d.drawLine(x, y, x + element.getWidth(), y + element.getHeight());
+
+            return null;
+        };
+
+        this.view.addInstruction(instruction);
     }
 
     @Override
     public void drawRectangle(ElementDto element) {
-        this.view.addInstruction(null);
+        Function<Graphics, Void> instruction = g -> {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+
+            Point position = element.getPosition();
+            g2d.drawRect(position.getX(), position.getY(), element.getWidth(), element.getHeight());
+
+            return null;
+        };
+
+        this.view.addInstruction(instruction);
     }
 
     @Override
     public void drawEllipse(ElementDto element) {
-        this.view.addInstruction(null);
+        Function<Graphics, Void> instruction = g -> {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+
+            Point position = element.getPosition();
+            g2d.draw(new Ellipse2D.Double(position.getX(), position.getY(), element.getWidth(), element.getHeight()));
+
+            return null;
+        };
+
+        this.view.addInstruction(instruction);
     }
 
     @Override
     public void drawText(ElementDto element) {
-        this.view.addInstruction(null);
+        Function<Graphics, Void> instruction = g -> {
+            Graphics2D g2d = (Graphics2D) g;
+
+            Point position = element.getPosition();
+            g2d.drawString(element.getText(), position.getX(), position.getY());
+
+            return null;
+        };
+
+        this.view.addInstruction(instruction);
     }
 
     @Override
     public void drawImage(ElementDto element) {
-        this.view.addInstruction(null);
+        Function<Graphics, Void> instruction = g -> {
+            Graphics2D g2d = (Graphics2D) g;
+
+            ImageIcon icon = new ImageIcon(element.getPath());
+            Image image = icon.getImage();
+
+            Point position = element.getPosition();
+            g2d.drawImage(image, position.getX(), position.getY(), element.getWidth(), element.getHeight(), null);
+
+            return null;
+        };
+
+        this.view.addInstruction(instruction);
     }
 
     @Override
