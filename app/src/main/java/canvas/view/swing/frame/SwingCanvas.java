@@ -9,18 +9,22 @@ import java.awt.Graphics;
 
 import canvas.controller.Listener;
 import canvas.view.swing.SwingConverter;
+import canvas.view.swing.SwingView;
 
 public class SwingCanvas extends Canvas implements MouseListener {
-    Listener listener;
-    Point point;
-    SwingConverter converter;
+    private Listener listener;
+    private Point point;
+    private SwingConverter converter;
+    private SwingView view;
 
-    public SwingCanvas(Listener listener) {
+    public SwingCanvas(Listener listener, SwingView view) {
         super();
         addMouseListener(this);
+        setBackground(Color.WHITE);
+
+        this.view = view;
         this.listener = listener;
         this.converter = new SwingConverter();
-        setBackground(Color.WHITE);
     }
 
     @Override

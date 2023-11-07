@@ -9,7 +9,7 @@ import canvas.view.swing.frame.right.PropertyPanel;
 
 public class SwingView implements View {
     private Listener listener;
-    private Adapter adapter;
+    private SwingAdapter adapter;
     private MainFrame mainFrame;
     private PropertyPanel propertyPanel;
     private SwingCanvas canvas;
@@ -29,7 +29,7 @@ public class SwingView implements View {
     }
 
     public void show() {
-        mainFrame = new MainFrame(listener);
+        mainFrame = new MainFrame(listener, this);
         canvas = mainFrame.getCanvas();
         propertyPanel = mainFrame.getPropertyPanel();
     }
