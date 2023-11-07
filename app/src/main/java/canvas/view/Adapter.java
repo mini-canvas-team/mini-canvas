@@ -4,6 +4,10 @@ import canvas.controller.ElementDto;
 import canvas.model.Color;
 
 public interface Adapter {
+    void clear();
+
+    void paint();
+
     void drawLine(ElementDto element);
 
     void drawRectangle(ElementDto element);

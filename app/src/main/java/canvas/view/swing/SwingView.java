@@ -1,5 +1,10 @@
 package canvas.view.swing;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
 import canvas.controller.Listener;
 import canvas.view.Adapter;
 import canvas.view.View;
@@ -9,10 +14,11 @@ import canvas.view.swing.frame.right.PropertyPanel;
 
 public class SwingView implements View {
     private Listener listener;
-    private Adapter adapter;
+    private SwingAdapter adapter;
     private MainFrame mainFrame;
     private PropertyPanel propertyPanel;
     private SwingCanvas canvas;
+    private List<Function<Graphics, Void>> instructions = new ArrayList<>();
 
     protected SwingView() {
         this.adapter = new SwingAdapter(this);
@@ -29,9 +35,25 @@ public class SwingView implements View {
     }
 
     public void show() {
-        mainFrame = new MainFrame(listener);
+        mainFrame = new MainFrame(listener, this);
         canvas = mainFrame.getCanvas();
         propertyPanel = mainFrame.getPropertyPanel();
+    }
+
+    protected void addInstruction(Function<Graphics, Void> instruction) {
+        this.instructions.add(instruction);
+    }
+
+    public void clearInstructions() {
+        this.instructions.clear();
+    }
+
+    public List<Function<Graphics, Void>> getInstructions() {
+        return this.instructions;
+    }
+
+    public void paint() {
+        this.canvas.repaint();
     }
 
     public PropertyPanel getPropertyPanel() {

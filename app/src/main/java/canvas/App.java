@@ -3,7 +3,6 @@
  */
 package canvas;
 
-import canvas.controller.Controller;
 import canvas.view.ViewFactory;
 import canvas.view.swing.SwingViewFactory;
 

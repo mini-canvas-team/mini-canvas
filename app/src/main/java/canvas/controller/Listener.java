@@ -33,16 +33,19 @@ public class Listener {
     public void changeWidth(Integer width) {
         getContainer().setWidth(width);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeHeight(Integer height) {
         getContainer().setHeight(height);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeColor(Color color) {
         getContainer().setColor(color);
         controller.draw();
+        controller.showProperties();
     }
 
     public void changeText(String text) {
@@ -90,6 +93,7 @@ public class Listener {
             Element element = controller.getFactory().create(type, p1, p2, color);
             controller.getContainer().add(element);
             controller.draw();
+            controller.showProperties();
         }
     }
 
@@ -98,8 +102,6 @@ public class Listener {
             this.selectObjects(p1, p2);
         } else {
             this.addObject(p1, p2);
-            controller.draw();
         }
-        controller.showProperties();
     }
 }

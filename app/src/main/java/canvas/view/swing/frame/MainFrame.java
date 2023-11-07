@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import canvas.controller.Listener;
+import canvas.view.swing.SwingView;
 import canvas.view.swing.frame.down.ColorPanel;
 import canvas.view.swing.frame.left.TypePanel;
 import canvas.view.swing.frame.right.PropertyPanel;
@@ -15,7 +16,7 @@ public class MainFrame extends JFrame {
     private PropertyPanel propertyPanel;
     private SwingCanvas canvas;
 
-    public MainFrame(Listener listener) {
+    public MainFrame(Listener listener, SwingView view) {
         super("miniFrame");
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -25,7 +26,7 @@ public class MainFrame extends JFrame {
         setSize(screenSize.width, screenSize.height * 3 / 4);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        canvas = new SwingCanvas(listener);
+        canvas = new SwingCanvas(listener, view);
         add(canvas, BorderLayout.CENTER);
         add(new ColorPanel(listener), BorderLayout.SOUTH);
         propertyPanel = new PropertyPanel(listener);

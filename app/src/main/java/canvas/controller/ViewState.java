@@ -8,7 +8,7 @@ public class ViewState {
 
     public ViewState() {
         this.type = null;
-        this.color = new Color(255, 255, 255);
+        this.color = new Color(0, 0, 0);
     }
 
     public ElementType getType() {
