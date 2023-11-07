@@ -63,6 +63,7 @@ public class PropertyPanel extends JPanel {
         add(buttonFront);
         add(buttonBack);
 
+        showProperties(null, null, null);
     }
 
     public void showProperties(Integer width, Integer height, Color color) {
