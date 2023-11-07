@@ -3,26 +3,32 @@ package canvas.model;
 import canvas.view.Adapter;
 
 public abstract class Element implements Component {
-    private Point position;
-    private int width;
-    private int height;
+    private Point p1;
+    private Point p2;
     private Color color;
 
     public Element(Point p1, Point p2, Color color) {
-        this.position = Point.topLeft(p1, p2);
-        this.width = Point.getWidth(p1, p2);
-        this.height = Point.getHeight(p1, p2);
+        this.p1 = p1;
+        this.p2 = p2;
         this.color = color;
     }
 
     @Override
     public void setWidth(int width) {
-        this.width = width;
+        if (p1.getX() > p2.getX()) {
+            this.p1 = new Point(p2.getX() + width, p1.getY());
+        } else {
+            this.p2 = new Point(p1.getX() + width, p2.getY());
+        }
     }
 
     @Override
     public void setHeight(int height) {
-        this.height = height;
+        if (p1.getY() > p2.getY()) {
+            this.p1 = new Point(p1.getX(), p2.getY() + height);
+        } else {
+            this.p2 = new Point(p2.getX(), p1.getY() + height);
+        }
     }
 
     @Override
@@ -38,12 +44,12 @@ public abstract class Element implements Component {
 
     @Override
     public Integer getWidth() {
-        return width;
+        return Point.getWidth(p1, p2);
     }
 
     @Override
     public Integer getHeight() {
-        return height;
+        return Point.getHeight(p1, p2);
     }
 
     public Color getColor() {
@@ -51,16 +57,27 @@ public abstract class Element implements Component {
     }
 
     public Point getPosition() {
-        return position;
+        return Point.topLeft(p1, p2);
+    }
+
+    public Point getPoint1() {
+        return p1;
+    }
+
+    public Point getPoint2() {
+        return p2;
     }
 
     @Override
     public boolean contains(Point p1, Point p2) {
+        Point clt = Point.topLeft(this.p1, this.p2);
+        Point crb = Point.bottomRight(this.p1, this.p2);
+
         Point plt = Point.topLeft(p1, p2);
         Point prb = Point.bottomRight(p1, p2);
 
-        boolean overlappingX = position.getX() <= prb.getX() && position.getX() + width >= plt.getX();
-        boolean overlappingY = position.getY() <= prb.getY() && position.getY() + height >= plt.getY();
+        boolean overlappingX = clt.getX() <= prb.getX() && crb.getX() >= plt.getX();
+        boolean overlappingY = clt.getY() <= prb.getY() && crb.getY() >= plt.getY();
         return overlappingX && overlappingY;
     }
 

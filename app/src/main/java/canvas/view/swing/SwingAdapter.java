@@ -36,10 +36,9 @@ public class SwingAdapter implements Adapter {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(new SwingConverter().convertColor(element.getColor()));
 
-            Point position = element.getPosition();
-            int x = position.getX();
-            int y = position.getY();
-            g2d.drawLine(x, y, x + element.getWidth(), y + element.getHeight());
+            Point p1 = element.getPoint1();
+            Point p2 = element.getPoint2();
+            g2d.drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY());
 
             return null;
         };
@@ -81,6 +80,7 @@ public class SwingAdapter implements Adapter {
     public void drawText(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.drawString(element.getText(), position.getX(), position.getY());

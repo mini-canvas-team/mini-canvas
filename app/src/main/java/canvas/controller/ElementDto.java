@@ -10,6 +10,8 @@ public class ElementDto {
     private Point position;
     private int width;
     private int height;
+    private Point point1;
+    private Point point2;
     private Color color;
     private String text;
     private String path;
@@ -18,6 +20,8 @@ public class ElementDto {
         this.position = basic.getPosition();
         this.width = basic.getWidth();
         this.height = basic.getHeight();
+        this.point1 = basic.getPoint1();
+        this.point2 = basic.getPoint2();
         this.color = basic.getColor();
     }
 
@@ -25,6 +29,8 @@ public class ElementDto {
         this.position = text.getPosition();
         this.width = text.getWidth();
         this.height = text.getHeight();
+        this.point1 = text.getPoint1();
+        this.point2 = text.getPoint2();
         this.color = text.getColor();
         this.text = text.getText();
     }
@@ -34,6 +40,8 @@ public class ElementDto {
         this.width = image.getWidth();
         this.height = image.getHeight();
         this.color = image.getColor();
+        this.point1 = image.getPoint1();
+        this.point2 = image.getPoint2();
         this.path = image.getPath();
     }
 
@@ -47,6 +55,14 @@ public class ElementDto {
 
     public int getHeight() {
         return height;
+    }
+
+    public Point getPoint1() {
+        return point1;
+    }
+
+    public Point getPoint2() {
+        return point2;
     }
 
     public Color getColor() {
