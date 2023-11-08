@@ -27,6 +27,9 @@ public class PropertyPanel extends JPanel {
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
+
+                areaWidth.initInput();
+
             }
         });
 
@@ -38,6 +41,9 @@ public class PropertyPanel extends JPanel {
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
+
+                areaHeight.initInput();
+
             }
         });
 
