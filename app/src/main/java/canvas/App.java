@@ -3,12 +3,12 @@
  */
 package canvas;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import canvas.view.ViewFactory;
+import canvas.view.swing.SwingViewFactory;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ViewFactory viewFactory = new SwingViewFactory();
+        viewFactory.createView();
     }
 }
