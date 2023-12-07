@@ -23,6 +23,10 @@ public class PropertyArea extends JPanel {
         add(input);
     }
 
+    public void initInput() {
+        input.setText("");
+    }
+
     public void setText(String text) {
         show.setText(name + " : " + text);
     }

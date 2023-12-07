@@ -36,6 +36,12 @@ public class PropertyColor extends JPanel {
         add(enterBtn);
     }
 
+    public void initInput() {
+        redArea.initInput();
+        greenArea.initInput();
+        blueArea.initInput();
+    }
+
     private void changeColor() {
         try {
             Integer red = Integer.parseInt(redArea.getText());
@@ -45,6 +51,9 @@ public class PropertyColor extends JPanel {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+
+        this.initInput();
+
     }
 
     public void showColor(Color c) {
