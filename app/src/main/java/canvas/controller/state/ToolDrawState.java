@@ -10,7 +10,10 @@ public interface ToolDrawState extends ToolState {
 
     @Override
     public default void drag(Context ctx, Point p1, Point p2) {
+        Color color = ctx.getColor();
 
+        Element element = this.create(p1, p2, color);
+        ctx.addElement(element);
     }
 
     @Override

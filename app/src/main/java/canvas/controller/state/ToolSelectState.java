@@ -7,11 +7,11 @@ public class ToolSelectState implements ToolState {
 
     @Override
     public void drag(Context ctx, Point p1, Point p2) {
-
+        ctx.selectElements(p1, p2);
     }
 
     @Override
     public void click(Context ctx, Point p) {
-
+        ctx.selectElement(p);
     }
 }
