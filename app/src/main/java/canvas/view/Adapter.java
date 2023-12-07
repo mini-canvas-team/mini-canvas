@@ -18,5 +18,9 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
-    void showProperties(Integer width, Integer height, Color color);
+    void clearSelections();
+
+    void addSelection(ElementDto element);
+
+    void drawSelections();
 }

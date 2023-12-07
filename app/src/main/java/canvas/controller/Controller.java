@@ -55,10 +55,10 @@ public class Controller {
     }
 
     protected void drawSelections() {
-        Integer width = container.getWidth();
-        Integer height = container.getHeight();
-        Color color = container.getColor();
-
-        this.adapters.forEach(adapter -> adapter.showProperties(width, height, color));
+        this.adapters.forEach(adapter -> {
+            adapter.clearSelections();
+            this.container.drawSelection(adapter);
+            adapter.drawSelections();
+        });
     }
 }
