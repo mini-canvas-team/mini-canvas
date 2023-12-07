@@ -34,7 +34,7 @@ public class SwingAdapter implements Adapter {
     public void drawLine(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point p1 = element.getPoint1();
             Point p2 = element.getPoint2();
@@ -50,7 +50,7 @@ public class SwingAdapter implements Adapter {
     public void drawRectangle(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.drawRect(position.getX(), position.getY(), element.getWidth(), element.getHeight());
@@ -65,7 +65,7 @@ public class SwingAdapter implements Adapter {
     public void drawEllipse(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.draw(new Ellipse2D.Double(position.getX(), position.getY(), element.getWidth(), element.getHeight()));
@@ -80,7 +80,7 @@ public class SwingAdapter implements Adapter {
     public void drawText(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.drawString(element.getText(), position.getX(), position.getY());
@@ -109,8 +109,18 @@ public class SwingAdapter implements Adapter {
     }
 
     @Override
-    public void showProperties(Integer width, Integer height, Color color) {
-        view.getPropertyPanel().showProperties(width, height, new SwingConverter().convertColor(color));
+    public void clearSelections() {
+        view.clearSelections();
+    }
+
+    @Override
+    public void addSelection(ElementDto element) {
+        view.addProperty(element);
+    }
+
+    @Override
+    public void drawSelections() {
+        view.drawSelections();
     }
 
 }
