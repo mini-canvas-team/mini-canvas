@@ -46,7 +46,7 @@ public class Controller {
         return this.viewState;
     }
 
-    protected void draw() {
+    protected void drawResources() {
         this.adapters.forEach(adapter -> {
             adapter.clear();
             this.container.draw(adapter);
@@ -54,7 +54,7 @@ public class Controller {
         });
     }
 
-    protected void showProperties() {
+    protected void drawSelections() {
         Integer width = container.getWidth();
         Integer height = container.getHeight();
         Color color = container.getColor();

@@ -32,47 +32,47 @@ public class Listener {
     // right panel event
     public void changeWidth(Integer width) {
         getContainer().setWidth(width);
-        controller.draw();
-        controller.showProperties();
+        controller.drawResources();
+        controller.drawSelections();
     }
 
     public void changeHeight(Integer height) {
         getContainer().setHeight(height);
-        controller.draw();
-        controller.showProperties();
+        controller.drawResources();
+        controller.drawSelections();
     }
 
     public void changeColor(Color color) {
         getContainer().setColor(color);
-        controller.draw();
-        controller.showProperties();
+        controller.drawResources();
+        controller.drawSelections();
     }
 
     public void changeText(String text) {
         getContainer().setText(text);
-        controller.draw();
+        controller.drawResources();
     }
 
     public void changePath(String path) {
         getContainer().setPath(path);
-        controller.draw();
+        controller.drawResources();
     }
 
     public void changeIndexFront() {
         getContainer().setFront();
-        controller.draw();
+        controller.drawResources();
     }
 
     public void changeIndexBack() {
         getContainer().setBack();
-        controller.draw();
+        controller.drawResources();
     }
 
     // canvas event
     public void click(Point p) {
         if (getViewState().getType() == null) {
             selectObject(p);
-            controller.showProperties();
+            controller.drawSelections();
         }
     }
 
@@ -82,7 +82,7 @@ public class Listener {
 
     private void selectObjects(Point p1, Point p2) {
         getContainer().select(p1, p2);
-        controller.showProperties();
+        controller.drawSelections();
     }
 
     private void addObject(Point p1, Point p2) {
@@ -92,8 +92,8 @@ public class Listener {
         if (type != null) {
             Element element = controller.getFactory().create(type, p1, p2, color);
             controller.getContainer().add(element);
-            controller.draw();
-            controller.showProperties();
+            controller.drawResources();
+            controller.drawSelections();
         }
     }
 
