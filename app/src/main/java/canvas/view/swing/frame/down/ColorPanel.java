@@ -22,7 +22,7 @@ public class ColorPanel extends JPanel implements ChangeListener {
 
     @Override
     public void stateChanged(javax.swing.event.ChangeEvent e) {
-        listener.setSelectedColor(converter.convertColor(chooser.getColor()));
+        listener.setColor(converter.convertColor(chooser.getColor()));
         System.out.println(chooser.getColor());
     }
 }

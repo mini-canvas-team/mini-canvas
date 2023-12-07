@@ -1,7 +1,6 @@
 package canvas.controller;
 
 import canvas.model.Color;
-import canvas.model.Element;
 import canvas.model.Point;
 
 public class Listener {
@@ -11,8 +10,8 @@ public class Listener {
         this.controller = controller;
     }
 
-    private ViewState getViewState() {
-        return this.controller.getViewState();
+    private Context getContext() {
+        return this.controller.getContext();
     }
 
     private ComponentContainer getContainer() {
@@ -20,13 +19,13 @@ public class Listener {
     }
 
     // left panel event
-    public void setSelectedType(int type) {
-        getViewState().setType(type);
+    public void setTool(int type) {
+        this.getContext().setTool(type);
     }
 
     // down panel event
-    public void setSelectedColor(Color color) {
-        getViewState().setColor(color);
+    public void setColor(Color color) {
+        this.getContext().setColor(color);
     }
 
     // right panel event
@@ -70,38 +69,10 @@ public class Listener {
 
     // canvas event
     public void click(Point p) {
-        if (getViewState().getType() == null) {
-            selectObject(p);
-            controller.drawSelections();
-        }
-    }
-
-    public void selectObject(Point p) {
-        getContainer().selectOne(p);
-    }
-
-    private void selectObjects(Point p1, Point p2) {
-        getContainer().select(p1, p2);
-        controller.drawSelections();
-    }
-
-    private void addObject(Point p1, Point p2) {
-        ElementType type = getViewState().getType();
-        Color color = getViewState().getColor();
-
-        if (type != null) {
-            Element element = controller.getFactory().create(type, p1, p2, color);
-            controller.getContainer().add(element);
-            controller.drawResources();
-            controller.drawSelections();
-        }
+        this.getContext().click(p);
     }
 
     public void drag(Point p1, Point p2) {
-        if (getViewState().getType() == null) {
-            this.selectObjects(p1, p2);
-        } else {
-            this.addObject(p1, p2);
-        }
+        this.getContext().draw(p1, p2);
     }
 }

@@ -12,14 +12,12 @@ public class Controller {
 
     private Listener listener;
     private ComponentContainer container;
-    private ElementFactory factory;
-    private ViewState viewState;
+    private Context context;
 
     private Controller() {
         listener = new Listener(this);
+        context = new Context(this);
         container = new ComponentContainer();
-        factory = new ElementFactory();
-        viewState = new ViewState();
     }
 
     public void addAdapter(Adapter adapter) {
@@ -38,12 +36,8 @@ public class Controller {
         return this.container;
     }
 
-    protected ElementFactory getFactory() {
-        return this.factory;
-    }
-
-    protected ViewState getViewState() {
-        return this.viewState;
+    protected Context getContext() {
+        return this.context;
     }
 
     protected void drawResources() {
