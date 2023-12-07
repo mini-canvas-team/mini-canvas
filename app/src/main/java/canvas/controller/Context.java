@@ -1,5 +1,7 @@
 package canvas.controller;
 
+import canvas.controller.state.ToolDrawEnum;
+import canvas.controller.state.ToolSelectState;
 import canvas.controller.state.ToolState;
 import canvas.model.Color;
 import canvas.model.Point;
@@ -8,13 +10,12 @@ public class Context {
     private ToolState tool;
     private Color color;
 
-    public Context() {
-        this.tool = null; // TODO: set tool
+        this.tool = new ToolSelectState();
         this.color = new Color(0, 0, 0);
     }
 
     public void setTool(int id) {
-        this.tool = null; // TODO: set tool
+        this.tool = id == 0 ? new ToolSelectState() : ToolDrawEnum.getById(id);
     }
 
     public void setColor(Color color) {
