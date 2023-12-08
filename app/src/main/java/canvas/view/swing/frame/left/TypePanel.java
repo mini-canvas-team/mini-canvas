@@ -23,7 +23,7 @@ public class TypePanel extends JPanel {
             JButton btn = new SelectBtn(i);
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    listener.setSelectedType(((SelectBtn) e.getSource()).getIndex());
+                    listener.setTool(((SelectBtn) e.getSource()).getIndex());
                 }
             });
 
