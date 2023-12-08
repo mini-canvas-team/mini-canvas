@@ -5,10 +5,6 @@ import java.util.function.Function;
 import canvas.controller.ElementDto;
 
 public interface Adapter {
-    void clear();
-
-    void paint();
-
     public void drawResources(Function<Adapter, Void> resourcesDrawEach);
 
     public void drawSelections(Function<Adapter, Void> selectionsDrawEach);
@@ -23,9 +19,4 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
-    void clearSelections();
-
-    void addSelection(ElementDto element);
-
-    void drawSelections();
 }

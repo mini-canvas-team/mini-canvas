@@ -20,13 +20,15 @@ public class SwingAdapter implements Adapter {
     }
 
     @Override
-    public void clear() {
+    public void drawResources(Function<Adapter, Void> resourcesDrawEach) {
         this.view.clearInstructions();
+        resourcesDrawEach.apply(this);
+        this.view.paint();
     }
 
     @Override
-    public void paint() {
-        this.view.paint();
+    public void drawSelections(Function<Adapter, Void> selectionsDrawEach) {
+
     }
 
     @Override
@@ -106,17 +108,4 @@ public class SwingAdapter implements Adapter {
 
         this.view.addInstruction(instruction);
     }
-
-    @Override
-    public void clearSelections() {
-    }
-
-    @Override
-    public void addSelection(ElementDto element) {
-    }
-
-    @Override
-    public void drawSelections() {
-    }
-
 }
