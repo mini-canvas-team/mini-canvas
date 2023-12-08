@@ -17,7 +17,7 @@ public class SwingViewFactory implements ViewFactory {
 
         view.setListener(listener);
         Controller.getInstance().addAdapter(view.getAdapter());
-
+        Controller.getInstance().addAdapter(view.getPropertyPanel().getAdapter());
         view.show();
         return view;
     }

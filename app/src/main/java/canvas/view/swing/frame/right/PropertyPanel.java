@@ -6,17 +6,26 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Color;
 
+import canvas.controller.ElementDto;
 import canvas.controller.Listener;
+import canvas.view.Adapter;
+import canvas.view.swing.SwingConverter;
+import canvas.view.swing.SwingPropertyAdapter;
 
 public class PropertyPanel extends JPanel {
     private PropertyArea areaWidth, areaHeight;
     private PropertyColor areaColor;
     private JButton buttonFront, buttonBack;
+    private Adapter adapter;
+    private List<ElementDto> selections = new ArrayList<>();
 
     public PropertyPanel(Listener listener) {
         super();
+        this.adapter = new SwingPropertyAdapter(this);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
@@ -69,10 +78,30 @@ public class PropertyPanel extends JPanel {
         add(buttonFront);
         add(buttonBack);
 
-        showProperties(null, null, null);
+        showProperties();
     }
 
-    public void showProperties(Integer width, Integer height, Color color) {
+    public void addSelection(ElementDto element) {
+        this.selections.add(element);
+    }
+
+    public void clearSelections() {
+        this.selections.clear();
+    }
+
+    public void showProperties() {
+        Integer width = selections.stream().mapToInt(ElementDto::getWidth).distinct().count() == 1
+                ? selections.stream().mapToInt(ElementDto::getWidth).findFirst().getAsInt()
+                : null;
+
+        Integer height = selections.stream().mapToInt(ElementDto::getHeight).distinct().count() == 1
+                ? selections.stream().mapToInt(ElementDto::getHeight).findFirst().getAsInt()
+                : null;
+
+        java.awt.Color color = selections.stream().map(ElementDto::getColor).distinct().count() == 1
+                ? selections.stream().map(ElementDto::getColor).findFirst().map(SwingConverter::convertColor).get()
+                : null;
+
         try {
             areaWidth.setText(width.toString());
 
@@ -87,5 +116,9 @@ public class PropertyPanel extends JPanel {
         }
 
         areaColor.showColor(color);
+    }
+
+    public Adapter getAdapter() {
+        return adapter;
     }
 }

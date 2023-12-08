@@ -9,7 +9,6 @@ import java.util.function.Function;
 import javax.swing.ImageIcon;
 
 import canvas.controller.ElementDto;
-import canvas.model.Color;
 import canvas.model.Point;
 import canvas.view.Adapter;
 
@@ -110,17 +109,14 @@ public class SwingAdapter implements Adapter {
 
     @Override
     public void clearSelections() {
-        view.clearSelections();
     }
 
     @Override
     public void addSelection(ElementDto element) {
-        view.addProperty(element);
     }
 
     @Override
     public void drawSelections() {
-        view.drawSelections();
     }
 
 }

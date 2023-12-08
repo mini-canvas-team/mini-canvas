@@ -60,5 +60,6 @@ public class Controller {
             this.container.drawSelection(adapter);
             adapter.drawSelections();
         });
+
     }
 }
