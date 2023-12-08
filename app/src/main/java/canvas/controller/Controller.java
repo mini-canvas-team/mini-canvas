@@ -11,7 +11,7 @@ import canvas.model.Element;
 import canvas.model.Point;
 import canvas.view.Adapter;
 import canvas.view.PropertyInput;
-import canvas.view.swing.SwingFile;
+import canvas.view.swing.SwingPropertyInput;
 
 public class Controller {
     private static Controller instance = new Controller();
@@ -27,7 +27,7 @@ public class Controller {
         this.context = new Context(this);
         this.container = new ComponentContainer();
         // Replace it to Factory
-        this.pInput = new SwingFile();
+        this.pInput = new SwingPropertyInput();
     }
 
     public void addAdapter(Adapter adapter) {

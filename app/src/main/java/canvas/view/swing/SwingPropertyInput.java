@@ -7,7 +7,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import canvas.view.PropertyInput;
 
-public class SwingFile implements PropertyInput {
+public class SwingPropertyInput implements PropertyInput {
 
     @Override
     public String getText() {
