@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import canvas.controller.ElementDto;
 import canvas.controller.Listener;
 import canvas.view.Adapter;
 import canvas.view.View;
