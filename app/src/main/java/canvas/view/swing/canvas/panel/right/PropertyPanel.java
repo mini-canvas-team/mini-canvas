@@ -1,8 +1,9 @@
-package canvas.view.swing.frame.right;
+package canvas.view.swing.canvas.panel.right;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,9 @@ import canvas.controller.ElementDto;
 import canvas.controller.Listener;
 import canvas.view.Adapter;
 import canvas.view.swing.SwingConverter;
-import canvas.view.swing.SwingPropertyAdapter;
+import canvas.view.swing.canvas.Panel;
 
-public class PropertyPanel extends JPanel {
+public class PropertyPanel extends JPanel implements Panel {
     private PropertyArea areaWidth;
     private PropertyArea areaHeight;
     private PropertyColor areaColor;
@@ -24,7 +25,9 @@ public class PropertyPanel extends JPanel {
 
     public PropertyPanel(Listener listener) {
         super();
-        this.adapter = new SwingPropertyAdapter(this);
+
+        this.adapter = new PropertyAdapter(this);
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
@@ -98,5 +101,10 @@ public class PropertyPanel extends JPanel {
 
     public Adapter getAdapter() {
         return adapter;
+    }
+
+    @Override
+    public void addTo(JFrame frame, String layout) {
+        frame.add(this, layout);
     }
 }

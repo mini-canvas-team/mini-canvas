@@ -29,9 +29,4 @@ public class Text extends Element {
     public void draw(Adapter adapter) {
         adapter.drawText(new ElementDto(this));
     }
-
-    @Override
-    public void drawSelection(Adapter adapter) {
-        adapter.addSelection(new ElementDto(this));
-    }
 }

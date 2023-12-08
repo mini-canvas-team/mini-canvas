@@ -1,11 +1,13 @@
 package canvas.view;
 
+import java.util.function.Function;
+
 import canvas.controller.ElementDto;
 
 public interface Adapter {
-    void clear();
+    public void drawResources(Function<Adapter, Void> resourcesDrawEach);
 
-    void paint();
+    public void drawSelections(Function<Adapter, Void> selectionsDrawEach);
 
     void drawLine(ElementDto element);
 
@@ -17,9 +19,4 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
-    void clearSelections();
-
-    void addSelection(ElementDto element);
-
-    void drawSelections();
 }

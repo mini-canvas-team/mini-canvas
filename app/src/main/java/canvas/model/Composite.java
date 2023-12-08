@@ -89,9 +89,4 @@ public class Composite implements Component {
                 ? components.stream().map(Component::getColor).findFirst().get()
                 : null;
     }
-
-    @Override
-    public void drawSelection(Adapter adapter) {
-        components.forEach(component -> component.drawSelection(adapter));
-    }
 }

@@ -47,19 +47,14 @@ public class Controller {
 
     protected void drawResources() {
         this.adapters.forEach(adapter -> {
-            adapter.clear();
-            this.container.draw(adapter);
-            adapter.paint();
+            adapter.drawResources(this.container::drawResources);
         });
     }
 
     protected void drawSelections() {
         this.adapters.forEach(adapter -> {
-            adapter.clearSelections();
-            this.container.drawSelection(adapter);
-            adapter.drawSelections();
+            adapter.drawSelections(this.container::drawSelections);
         });
-
     }
 
     protected void setTool(int id) {

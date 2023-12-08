@@ -22,6 +22,4 @@ public interface Component {
     boolean contains(Point p1, Point p2);
 
     void draw(Adapter adapter);
-
-    void drawSelection(Adapter adapter);
 }
