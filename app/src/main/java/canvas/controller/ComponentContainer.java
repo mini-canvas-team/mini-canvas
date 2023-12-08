@@ -79,11 +79,13 @@ public class ComponentContainer {
         selections.get().forEach(component -> resources.add(component));
     }
 
-    public void draw(Adapter adapter) {
+    public Void drawResources(Adapter adapter) {
         resources.draw(adapter);
+        return null;
     }
 
-    public void drawSelection(Adapter adapter) {
-        selections.drawSelection(adapter);
+    public Void drawSelections(Adapter adapter) {
+        selections.draw(adapter);
+        return null;
     }
 }

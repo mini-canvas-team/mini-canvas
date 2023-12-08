@@ -1,11 +1,17 @@
 package canvas.view;
 
+import java.util.function.Function;
+
 import canvas.controller.ElementDto;
 
 public interface Adapter {
     void clear();
 
     void paint();
+
+    public void drawResources(Function<Adapter, Void> resourcesDrawEach);
+
+    public void drawSelections(Function<Adapter, Void> selectionsDrawEach);
 
     void drawLine(ElementDto element);
 
