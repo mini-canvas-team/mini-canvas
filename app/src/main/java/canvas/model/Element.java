@@ -83,7 +83,4 @@ public abstract class Element implements Component {
 
     @Override
     public abstract void draw(Adapter adapter);
-
-    @Override
-    public abstract void drawSelection(Adapter adapter);
 }
