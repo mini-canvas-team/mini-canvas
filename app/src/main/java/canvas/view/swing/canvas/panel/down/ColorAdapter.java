@@ -41,4 +41,13 @@ public class ColorAdapter implements Adapter {
 
     }
 
+    @Override
+    public void listenText() {
+
+    }
+
+    @Override
+    public void listenPath() {
+
+    }
 }

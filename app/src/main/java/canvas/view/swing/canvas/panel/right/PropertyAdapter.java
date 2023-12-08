@@ -48,4 +48,14 @@ public class PropertyAdapter implements Adapter {
     public void drawImage(ElementDto element) {
         panel.addSelection(element);
     }
+
+    @Override
+    public void listenText() {
+
+    }
+
+    @Override
+    public void listenPath() {
+
+    }
 }

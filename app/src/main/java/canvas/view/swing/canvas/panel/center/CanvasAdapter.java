@@ -109,4 +109,14 @@ public class CanvasAdapter implements Adapter {
 
         this.panel.addInstruction(instruction);
     }
+
+    @Override
+    public void listenText() {
+
+    }
+
+    @Override
+    public void listenPath() {
+
+    }
 }
