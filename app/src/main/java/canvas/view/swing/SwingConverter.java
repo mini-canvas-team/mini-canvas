@@ -4,23 +4,26 @@ import canvas.model.Color;
 import canvas.model.Point;
 
 public class SwingConverter {
-    public Color convertColor(java.awt.Color color) {
+    private SwingConverter() {
+    }
+
+    public static Color convertColor(java.awt.Color color) {
         if (color == null)
             return null;
         return new Color(color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    public java.awt.Color convertColor(Color color) {
+    public static java.awt.Color convertColor(Color color) {
         if (color == null)
             return null;
         return new java.awt.Color(color.getRed(), color.getGreen(), color.getBlue());
     }
 
-    public Point convertPoint(java.awt.Point point) {
+    public static Point convertPoint(java.awt.Point point) {
         return new Point(point.x, point.y);
     }
 
-    public java.awt.Point convertPoint(Point point) {
+    public static java.awt.Point convertPoint(Point point) {
         return new java.awt.Point(point.getX(), point.getY());
     }
 }

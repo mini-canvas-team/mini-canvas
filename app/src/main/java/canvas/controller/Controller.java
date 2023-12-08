@@ -3,7 +3,6 @@ package canvas.controller;
 import java.util.Set;
 import java.util.HashSet;
 
-import canvas.model.Color;
 import canvas.view.Adapter;
 
 public class Controller {
@@ -55,10 +54,11 @@ public class Controller {
     }
 
     protected void drawSelections() {
-        Integer width = container.getWidth();
-        Integer height = container.getHeight();
-        Color color = container.getColor();
+        this.adapters.forEach(adapter -> {
+            adapter.clearSelections();
+            this.container.drawSelection(adapter);
+            adapter.drawSelections();
+        });
 
-        this.adapters.forEach(adapter -> adapter.showProperties(width, height, color));
     }
 }
