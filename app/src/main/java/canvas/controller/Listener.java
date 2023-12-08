@@ -6,73 +6,55 @@ import canvas.model.Point;
 public class Listener {
     private Controller controller;
 
-    public Listener(Controller controller) {
+    protected Listener(Controller controller) {
         this.controller = controller;
-    }
-
-    private Context getContext() {
-        return this.controller.getContext();
-    }
-
-    private ComponentContainer getContainer() {
-        return this.controller.getContainer();
     }
 
     // left panel event
     public void setTool(int type) {
-        this.getContext().setTool(type);
+        this.controller.setTool(type);
     }
 
     // down panel event
     public void setColor(Color color) {
-        this.getContext().setColor(color);
+        this.controller.setColor(color);
     }
 
     // right panel event
     public void changeWidth(Integer width) {
-        getContainer().setWidth(width);
-        controller.drawResources();
-        controller.drawSelections();
+        this.controller.changeWidth(width);
     }
 
     public void changeHeight(Integer height) {
-        getContainer().setHeight(height);
-        controller.drawResources();
-        controller.drawSelections();
+        this.controller.changeHeight(height);
     }
 
     public void changeColor(Color color) {
-        getContainer().setColor(color);
-        controller.drawResources();
-        controller.drawSelections();
+        this.controller.changeColor(color);
     }
 
     public void changeText(String text) {
-        getContainer().setText(text);
-        controller.drawResources();
+        this.controller.changeText(text);
     }
 
     public void changePath(String path) {
-        getContainer().setPath(path);
-        controller.drawResources();
+        this.controller.changePath(path);
     }
 
     public void changeIndexFront() {
-        getContainer().setFront();
-        controller.drawResources();
+        this.controller.changeIndexFront();
     }
 
     public void changeIndexBack() {
-        getContainer().setBack();
-        controller.drawResources();
+        this.controller.changeIndexBack();
     }
 
     // canvas event
     public void click(Point p) {
-        this.getContext().click(p);
+        this.controller.click(p);
     }
 
     public void drag(Point p1, Point p2) {
-        this.getContext().draw(p1, p2);
+        this.controller.drag(p1, p2);
     }
 }

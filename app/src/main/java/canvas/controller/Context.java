@@ -1,6 +1,5 @@
 package canvas.controller;
 
-import canvas.controller.state.ToolDrawEnum;
 import canvas.controller.state.ToolSelectState;
 import canvas.controller.state.ToolState;
 import canvas.model.Color;
@@ -13,17 +12,17 @@ public class Context {
     private ToolState tool;
     private Color color;
 
-    public Context(Controller controller) {
+    protected Context(Controller controller) {
         this.controller = controller;
         this.tool = new ToolSelectState();
         this.color = new Color(0, 0, 0);
     }
 
-    public void setTool(int id) {
-        this.tool = id == 0 ? new ToolSelectState() : ToolDrawEnum.getById(id);
+    protected void setTool(ToolState tool) {
+        this.tool = tool;
     }
 
-    public void setColor(Color color) {
+    protected void setColor(Color color) {
         this.color = color;
     }
 
@@ -31,27 +30,23 @@ public class Context {
         return this.color;
     }
 
-    public void draw(Point p1, Point p2) {
+    protected void drag(Point p1, Point p2) {
         this.tool.drag(this, p1, p2);
     }
 
-    public void click(Point p) {
+    protected void click(Point p) {
         this.tool.click(this, p);
     }
 
     public void addElement(Element element) {
-        this.controller.getContainer().add(element);
-        this.controller.drawResources();
-        this.controller.drawSelections();
+        this.controller.addElement(element);
     }
 
     public void selectElement(Point p) {
-        this.controller.getContainer().selectOne(p);
-        this.controller.drawSelections();
+        this.controller.selectElement(p);
     }
 
     public void selectElements(Point p1, Point p2) {
-        this.controller.getContainer().select(p1, p2);
-        this.controller.drawSelections();
+        this.controller.selectElements(p1, p2);
     }
 }
