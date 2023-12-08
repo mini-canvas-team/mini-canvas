@@ -16,7 +16,6 @@ import canvas.view.swing.SwingView;
 public class SwingCanvas extends Canvas implements MouseListener {
     private Listener listener;
     private Point point;
-    private SwingConverter converter;
     private SwingView view;
 
     public SwingCanvas(Listener listener, SwingView view) {
@@ -26,7 +25,6 @@ public class SwingCanvas extends Canvas implements MouseListener {
 
         this.view = view;
         this.listener = listener;
-        this.converter = new SwingConverter();
     }
 
     @Override
@@ -43,9 +41,9 @@ public class SwingCanvas extends Canvas implements MouseListener {
         Point ePoint = e.getPoint();
 
         if (point.equals(ePoint))
-            listener.click(converter.convertPoint(ePoint));
+            listener.click(SwingConverter.convertPoint(ePoint));
         else
-            listener.drag(converter.convertPoint(point), converter.convertPoint(ePoint));
+            listener.drag(SwingConverter.convertPoint(point), SwingConverter.convertPoint(ePoint));
     }
 
     @Override

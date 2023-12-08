@@ -1,7 +1,6 @@
 package canvas.view;
 
 import canvas.controller.ElementDto;
-import canvas.model.Color;
 
 public interface Adapter {
     void clear();
@@ -18,5 +17,9 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
-    void showProperties(Integer width, Integer height, Color color);
+    void clearSelections();
+
+    void addSelection(ElementDto element);
+
+    void drawSelections();
 }

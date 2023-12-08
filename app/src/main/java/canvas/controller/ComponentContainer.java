@@ -82,4 +82,8 @@ public class ComponentContainer {
     public void draw(Adapter adapter) {
         resources.draw(adapter);
     }
+
+    public void drawSelection(Adapter adapter) {
+        selections.drawSelection(adapter);
+    }
 }
