@@ -30,6 +30,14 @@ public class Context {
         return this.color;
     }
 
+    public String getText() {
+        return this.controller.getText();
+    }
+
+    public String getPath() {
+        return this.controller.getPath();
+    }
+
     protected void drag(Point p1, Point p2) {
         this.tool.drag(this, p1, p2);
     }

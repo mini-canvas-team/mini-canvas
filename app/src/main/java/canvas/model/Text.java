@@ -14,7 +14,7 @@ public class Text extends Element {
 
     @Override
     public void setText(String text) {
-        this.text = text;
+        this.text = text != null ? text : this.text;
     }
 
     @Override
