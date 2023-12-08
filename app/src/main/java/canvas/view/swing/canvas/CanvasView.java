@@ -4,23 +4,28 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 
-import canvas.controller.Controller;
+import canvas.controller.Listener;
+import canvas.view.Adapter;
+import canvas.view.View;
 import canvas.view.swing.canvas.panel.center.CanvasFactory;
 import canvas.view.swing.canvas.panel.down.ColorFactory;
 import canvas.view.swing.canvas.panel.left.TypeFactory;
 import canvas.view.swing.canvas.panel.right.PropertyFactory;
 
-public class CanvasView extends JFrame {
+public class CanvasView extends JFrame implements View {
+    private Set<Adapter> adapters;
+
     Set<PanelFactory> panelFactories = Set.of(
             new ColorFactory(),
             new TypeFactory(),
             new PropertyFactory(),
             new CanvasFactory());
 
-    public CanvasView() {
+    public CanvasView(Listener listener) {
         super("miniFrame");
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -30,15 +35,18 @@ public class CanvasView extends JFrame {
         setSize(screenSize.width, screenSize.height * 3 / 4);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        Controller controller = Controller.getInstance();
-
-        panelFactories.forEach(factory -> {
-            Panel panel = factory.createView(controller.getListner());
-            controller.addAdapter(panel.getAdapter());
-
+        this.adapters = panelFactories.stream().map(factory -> {
+            Panel panel = factory.createView(listener);
             panel.addTo(this, factory.getLayout());
-        });
+
+            return panel.getAdapter();
+        }).collect(Collectors.toSet());
 
         setVisible(true);
+    }
+
+    @Override
+    public Set<Adapter> getAdapters() {
+        return this.adapters;
     }
 }

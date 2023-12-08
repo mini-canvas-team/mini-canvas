@@ -30,12 +30,12 @@ public class Context {
         return this.color;
     }
 
-    public String getText() {
-        return this.controller.getText();
+    public void listenText() {
+        this.controller.listenText();
     }
 
-    public String getPath() {
-        return this.controller.getPath();
+    public void listenPath() {
+        this.controller.listenPath();
     }
 
     protected void drag(Point p1, Point p2) {

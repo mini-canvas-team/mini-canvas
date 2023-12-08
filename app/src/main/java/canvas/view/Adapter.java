@@ -19,4 +19,7 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
+    void listenText();
+
+    void listenPath();
 }

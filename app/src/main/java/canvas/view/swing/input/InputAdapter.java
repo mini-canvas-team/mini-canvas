@@ -1,15 +1,15 @@
-package canvas.view.swing.canvas.panel.right;
+package canvas.view.swing.input;
 
 import java.util.function.Function;
 
 import canvas.controller.ElementDto;
 import canvas.view.Adapter;
 
-public class PropertyAdapter implements Adapter {
-    private PropertyPanel panel;
+public class InputAdapter implements Adapter {
+    private InputView view;
 
-    protected PropertyAdapter(PropertyPanel panel) {
-        this.panel = panel;
+    protected InputAdapter(InputView view) {
+        this.view = view;
     }
 
     @Override
@@ -19,43 +19,41 @@ public class PropertyAdapter implements Adapter {
 
     @Override
     public void drawSelections(Function<Adapter, Void> selectionsDrawEach) {
-        panel.clearSelections();
-        selectionsDrawEach.apply(this);
-        panel.showProperties();
+
     }
 
     @Override
     public void drawLine(ElementDto element) {
-        panel.addSelection(element);
+
     }
 
     @Override
     public void drawRectangle(ElementDto element) {
-        panel.addSelection(element);
+
     }
 
     @Override
     public void drawEllipse(ElementDto element) {
-        panel.addSelection(element);
+
     }
 
     @Override
     public void drawText(ElementDto element) {
-        panel.addSelection(element);
+
     }
 
     @Override
     public void drawImage(ElementDto element) {
-        panel.addSelection(element);
+
     }
 
     @Override
     public void listenText() {
-
+        this.view.listenText();
     }
 
     @Override
     public void listenPath() {
-
+        this.view.listenPath();
     }
 }

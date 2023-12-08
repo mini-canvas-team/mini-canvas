@@ -10,8 +10,6 @@ import canvas.model.Color;
 import canvas.model.Element;
 import canvas.model.Point;
 import canvas.view.Adapter;
-import canvas.view.PropertyInput;
-import canvas.view.swing.SwingPropertyInput;
 
 public class Controller {
     private static Controller instance = new Controller();
@@ -20,14 +18,11 @@ public class Controller {
     private Listener listener;
     private ComponentContainer container;
     private Context context;
-    private PropertyInput pInput;
 
     private Controller() {
         this.listener = new Listener(this);
         this.context = new Context(this);
         this.container = new ComponentContainer();
-        // Replace it to Factory
-        this.pInput = new SwingPropertyInput();
     }
 
     public void addAdapter(Adapter adapter) {
@@ -38,7 +33,7 @@ public class Controller {
         return instance;
     }
 
-    public Listener getListner() {
+    public Listener getListener() {
         return this.listener;
     }
 
@@ -71,20 +66,24 @@ public class Controller {
         this.context.setColor(color);
     }
 
-    protected String getText() {
-        return pInput.getText();
-    }
-
-    protected String getPath() {
-        return pInput.getPath();
-    }
-
     protected void drag(Point p1, Point p2) {
         this.context.drag(p1, p2);
     }
 
     protected void click(Point p) {
         this.context.click(p);
+    }
+
+    protected void listenText() {
+        this.adapters.forEach(adapter -> {
+            adapter.listenText();
+        });
+    }
+
+    protected void listenPath() {
+        this.adapters.forEach(adapter -> {
+            adapter.listenPath();
+        });
     }
 
     protected void addElement(Element element) {
