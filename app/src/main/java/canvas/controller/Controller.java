@@ -3,7 +3,6 @@ package canvas.controller;
 import java.util.Set;
 import java.util.HashSet;
 
-import canvas.model.Color;
 import canvas.view.Adapter;
 
 public class Controller {

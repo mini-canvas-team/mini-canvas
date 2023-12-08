@@ -4,11 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Color;
 
 import canvas.controller.ElementDto;
 import canvas.controller.Listener;
@@ -17,9 +14,11 @@ import canvas.view.swing.SwingConverter;
 import canvas.view.swing.SwingPropertyAdapter;
 
 public class PropertyPanel extends JPanel {
-    private PropertyArea areaWidth, areaHeight;
+    private PropertyArea areaWidth;
+    private PropertyArea areaHeight;
     private PropertyColor areaColor;
-    private JButton buttonFront, buttonBack;
+    private JButton buttonFront;
+    private JButton buttonBack;
     private Adapter adapter;
     private List<ElementDto> selections = new ArrayList<>();
 
@@ -29,48 +28,36 @@ public class PropertyPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         areaWidth = new PropertyArea("Width");
-        areaWidth.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    listener.changeWidth(Integer.parseInt(areaWidth.getText()));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-
-                areaWidth.initInput();
-
+        areaWidth.addActionListener(e -> {
+            try {
+                listener.changeWidth(Integer.parseInt(areaWidth.getText()));
+            } catch (Exception ex) {
+                System.out.println(ex);
             }
+
+            areaWidth.initInput();
+
         });
 
         areaHeight = new PropertyArea("Height");
-        areaHeight.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    listener.changeHeight(Integer.parseInt(areaHeight.getText()));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-
-                areaHeight.initInput();
-
+        areaHeight.addActionListener(e -> {
+            try {
+                listener.changeHeight(Integer.parseInt(areaHeight.getText()));
+            } catch (Exception ex) {
+                System.out.println(ex);
             }
+
+            areaHeight.initInput();
+
         });
 
         areaColor = new PropertyColor(listener);
 
         buttonFront = new JButton("Front");
-        buttonFront.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                listener.changeIndexFront();
-            }
-        });
+        buttonFront.addActionListener(e -> listener.changeIndexFront());
 
         buttonBack = new JButton("Back");
-        buttonBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                listener.changeIndexBack();
-            }
-        });
+        buttonBack.addActionListener(e -> listener.changeIndexBack());
 
         add(areaWidth);
         add(areaHeight);
@@ -102,18 +89,9 @@ public class PropertyPanel extends JPanel {
                 ? selections.stream().map(ElementDto::getColor).findFirst().map(SwingConverter::convertColor).get()
                 : null;
 
-        try {
-            areaWidth.setText(width.toString());
+        areaWidth.setText(width != null ? width.toString() : "null");
 
-        } catch (Exception e) {
-            areaWidth.setText("null");
-        }
-
-        try {
-            areaHeight.setText(height.toString());
-        } catch (Exception e) {
-            areaHeight.setText("null");
-        }
+        areaHeight.setText(height != null ? height.toString() : "null");
 
         areaColor.showColor(color);
     }
