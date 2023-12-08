@@ -68,7 +68,7 @@ public class Controller {
     }
 
     protected void setColor(Color color) {
-        this.setColor(color);
+        this.context.setColor(color);
     }
 
     protected void drag(Point p1, Point p2) {
