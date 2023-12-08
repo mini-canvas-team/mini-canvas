@@ -2,6 +2,7 @@ package canvas.controller.state;
 
 import java.util.Arrays;
 
+import canvas.controller.Context;
 import canvas.model.*;
 
 public enum ToolDrawEnum implements ToolDrawState {
@@ -28,11 +29,29 @@ public enum ToolDrawEnum implements ToolDrawState {
         public Element create(Point p1, Point p2, Color color) {
             return new Text(p1, p2, color);
         }
+
+        @Override
+        public void drag(Context ctx, Point p1, Point p2) {
+            Color color = ctx.getColor();
+
+            Element element = this.create(p1, p2, color);
+            element.setText(ctx.getText());
+            ctx.addElement(element);
+        }
     },
     IMAGE(5) {
         @Override
         public Element create(Point p1, Point p2, Color color) {
             return new Image(p1, p2, color);
+        }
+
+        @Override
+        public void drag(Context ctx, Point p1, Point p2) {
+            Color color = ctx.getColor();
+
+            Element element = this.create(p1, p2, color);
+            element.setPath(ctx.getPath());
+            ctx.addElement(element);
         }
     };
 

@@ -19,7 +19,7 @@ public class Image extends Element {
 
     @Override
     public void setPath(String path) {
-        this.path = path;
+        this.path = path != null ? path : this.path;
     }
 
     public String getPath() {
