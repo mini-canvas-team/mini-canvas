@@ -1,4 +1,4 @@
-package canvas.view.swing.frame.down;
+package canvas.view.swing.canvas.panel.down;
 
 import java.awt.Color;
 import java.util.stream.Stream;

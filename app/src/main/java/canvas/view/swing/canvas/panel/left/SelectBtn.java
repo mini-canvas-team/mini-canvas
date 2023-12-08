@@ -1,4 +1,4 @@
-package canvas.view.swing.frame.left;
+package canvas.view.swing.canvas.panel.left;
 
 import javax.swing.JButton;
 

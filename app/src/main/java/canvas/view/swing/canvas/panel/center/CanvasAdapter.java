@@ -1,4 +1,4 @@
-package canvas.view.swing;
+package canvas.view.swing.canvas.panel.center;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,19 +11,20 @@ import javax.swing.ImageIcon;
 import canvas.controller.ElementDto;
 import canvas.model.Point;
 import canvas.view.Adapter;
+import canvas.view.swing.SwingConverter;
 
-public class SwingAdapter implements Adapter {
-    private SwingView view;
+public class CanvasAdapter implements Adapter {
+    private CanvasPanel panel;
 
-    public SwingAdapter(SwingView view) {
-        this.view = view;
+    public CanvasAdapter(CanvasPanel panel) {
+        this.panel = panel;
     }
 
     @Override
     public void drawResources(Function<Adapter, Void> resourcesDrawEach) {
-        this.view.clearInstructions();
+        this.panel.clearInstructions();
         resourcesDrawEach.apply(this);
-        this.view.paint();
+        this.panel.paint();
     }
 
     @Override
@@ -44,7 +45,7 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
@@ -106,6 +107,6 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 }

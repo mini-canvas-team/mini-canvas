@@ -1,4 +1,4 @@
-package canvas.view.swing.frame.right;
+package canvas.view.swing.canvas.panel.right;
 
 import javax.swing.JTextField;
 
