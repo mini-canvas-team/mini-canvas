@@ -35,8 +35,9 @@ public enum ToolDrawEnum implements ToolDrawState {
             Color color = ctx.getColor();
 
             Element element = this.create(p1, p2, color);
-            element.setText(ctx.getText());
             ctx.addElement(element);
+
+            ctx.listenText();
         }
     },
     IMAGE(5) {
@@ -50,8 +51,9 @@ public enum ToolDrawEnum implements ToolDrawState {
             Color color = ctx.getColor();
 
             Element element = this.create(p1, p2, color);
-            element.setPath(ctx.getPath());
             ctx.addElement(element);
+
+            ctx.listenPath();
         }
     };
 
