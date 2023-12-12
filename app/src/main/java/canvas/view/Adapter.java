@@ -1,12 +1,13 @@
 package canvas.view;
 
+import java.util.function.Function;
+
 import canvas.controller.ElementDto;
-import canvas.model.Color;
 
 public interface Adapter {
-    void clear();
+    public void drawResources(Function<Adapter, Void> resourcesDrawEach);
 
-    void paint();
+    public void drawSelections(Function<Adapter, Void> selectionsDrawEach);
 
     void drawLine(ElementDto element);
 
@@ -18,5 +19,7 @@ public interface Adapter {
 
     void drawImage(ElementDto element);
 
-    void showProperties(Integer width, Integer height, Color color);
+    void listenText();
+
+    void listenPath();
 }

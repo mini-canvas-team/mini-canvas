@@ -1,4 +1,4 @@
-package canvas.view.swing;
+package canvas.view.swing.canvas.panel.center;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,32 +9,34 @@ import java.util.function.Function;
 import javax.swing.ImageIcon;
 
 import canvas.controller.ElementDto;
-import canvas.model.Color;
 import canvas.model.Point;
 import canvas.view.Adapter;
+import canvas.view.swing.SwingConverter;
 
-public class SwingAdapter implements Adapter {
-    private SwingView view;
+public class CanvasAdapter implements Adapter {
+    private CanvasPanel panel;
 
-    public SwingAdapter(SwingView view) {
-        this.view = view;
+    public CanvasAdapter(CanvasPanel panel) {
+        this.panel = panel;
     }
 
     @Override
-    public void clear() {
-        this.view.clearInstructions();
+    public void drawResources(Function<Adapter, Void> resourcesDrawEach) {
+        this.panel.clearInstructions();
+        resourcesDrawEach.apply(this);
+        this.panel.paint();
     }
 
     @Override
-    public void paint() {
-        this.view.paint();
+    public void drawSelections(Function<Adapter, Void> selectionsDrawEach) {
+
     }
 
     @Override
     public void drawLine(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point p1 = element.getPoint1();
             Point p2 = element.getPoint2();
@@ -43,14 +45,14 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
     public void drawRectangle(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.drawRect(position.getX(), position.getY(), element.getWidth(), element.getHeight());
@@ -58,14 +60,14 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
     public void drawEllipse(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.draw(new Ellipse2D.Double(position.getX(), position.getY(), element.getWidth(), element.getHeight()));
@@ -73,14 +75,14 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
     public void drawText(ElementDto element) {
         Function<Graphics, Void> instruction = g -> {
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setColor(new SwingConverter().convertColor(element.getColor()));
+            g2d.setColor(SwingConverter.convertColor(element.getColor()));
 
             Point position = element.getPosition();
             g2d.drawString(element.getText(), position.getX(), position.getY());
@@ -88,7 +90,7 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
@@ -105,12 +107,16 @@ public class SwingAdapter implements Adapter {
             return null;
         };
 
-        this.view.addInstruction(instruction);
+        this.panel.addInstruction(instruction);
     }
 
     @Override
-    public void showProperties(Integer width, Integer height, Color color) {
-        view.getPropertyPanel().showProperties(width, height, new SwingConverter().convertColor(color));
+    public void listenText() {
+
     }
 
+    @Override
+    public void listenPath() {
+
+    }
 }

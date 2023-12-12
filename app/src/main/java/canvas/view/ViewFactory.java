@@ -1,5 +1,7 @@
 package canvas.view;
 
+import canvas.controller.Listener;
+
 public interface ViewFactory {
-    View createView();
+    public View createView(Listener listener);
 }

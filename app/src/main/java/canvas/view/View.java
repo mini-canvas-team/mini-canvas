@@ -1,9 +1,7 @@
 package canvas.view;
 
-import canvas.controller.Listener;
+import java.util.Set;
 
 public interface View {
-    void setListener(Listener listener);
-
-    Adapter getAdapter();
+    Set<Adapter> getAdapters();
 }

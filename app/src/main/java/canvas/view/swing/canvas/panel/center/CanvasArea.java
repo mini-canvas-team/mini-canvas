@@ -1,4 +1,4 @@
-package canvas.view.swing.frame;
+package canvas.view.swing.canvas.panel.center;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -11,22 +11,20 @@ import java.awt.Graphics;
 
 import canvas.controller.Listener;
 import canvas.view.swing.SwingConverter;
-import canvas.view.swing.SwingView;
 
-public class SwingCanvas extends Canvas implements MouseListener {
+public class CanvasArea extends Canvas implements MouseListener {
     private Listener listener;
     private Point point;
-    private SwingConverter converter;
-    private SwingView view;
+    private CanvasPanel view;
 
-    public SwingCanvas(Listener listener, SwingView view) {
+    public CanvasArea(Listener listener, CanvasPanel view) {
         super();
+
         addMouseListener(this);
         setBackground(Color.WHITE);
 
         this.view = view;
         this.listener = listener;
-        this.converter = new SwingConverter();
     }
 
     @Override
@@ -43,9 +41,9 @@ public class SwingCanvas extends Canvas implements MouseListener {
         Point ePoint = e.getPoint();
 
         if (point.equals(ePoint))
-            listener.click(converter.convertPoint(ePoint));
+            listener.click(SwingConverter.convertPoint(ePoint));
         else
-            listener.drag(converter.convertPoint(point), converter.convertPoint(ePoint));
+            listener.drag(SwingConverter.convertPoint(point), SwingConverter.convertPoint(ePoint));
     }
 
     @Override

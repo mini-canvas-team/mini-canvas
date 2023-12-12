@@ -1,4 +1,4 @@
-package canvas.view.swing.frame.right;
+package canvas.view.swing.canvas.panel.right;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -47,7 +47,7 @@ public class PropertyColor extends JPanel {
             Integer red = Integer.parseInt(redArea.getText());
             Integer green = Integer.parseInt(greenArea.getText());
             Integer blue = Integer.parseInt(blueArea.getText());
-            listener.changeColor(new SwingConverter().convertColor(new Color(red, green, blue)));
+            listener.changeColor(SwingConverter.convertColor(new Color(red, green, blue)));
         } catch (Exception ex) {
             System.out.println(ex);
         }
